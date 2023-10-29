@@ -5,7 +5,7 @@ Config.Debug = true
 Config.ForageLocations = {
     {
         ZoneName = 'Big Shroom Tings',
-        AmountOfMushrooms = 10,
+        AmountOfMushrooms = 5,
         PolyZonePoints = {
             vec3(2299.0, 5135.0, 52.0),
             vec3(2297.0, 5146.0, 52.0),
@@ -16,7 +16,7 @@ Config.ForageLocations = {
     },
     {
         ZoneName = 'Small Shroom Tings',
-        AmountOfMushrooms = 10,
+        AmountOfMushrooms = 5,
         PolyZonePoints = {
             vec3(2293.0, 5121.0, 50.0),
             vec3(2283.0, 5129.0, 50.0),
