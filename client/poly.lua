@@ -45,7 +45,9 @@ CreateThread(function()
                     description = "You enetered: "..CurrentZone.Name,
                     type = 'inform',
                 })
-                SpawnMushrooms(zone)
+                if pickingAllowed then
+                    SpawnMushrooms(zone)
+                end
                 Inside = true
             end,
             onExit = function(self)

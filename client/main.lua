@@ -4,7 +4,7 @@ QBCore = exports["qb-core"]:GetCoreObject()
 --Variables--
 -------------
 
-pickingAllowed = true
+pickingAllowed = false
 mushroomsSpawned = false
 mushrooms = {}
 
