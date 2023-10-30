@@ -18,7 +18,7 @@ function getRandomPointInSphere(spherecoords, radius)
   
     local x = coords.x + math.random(math.floor(-newRadius), math.floor(newRadius))
     local y = coords.y + math.random(math.floor(-newRadius), math.floor(newRadius))
-    local z = coords.z + math.random(0, 1)
+    local z = coords.z + 0.25
   
     local xOffset = x - coords.x
     local yOffset = y - coords.y
