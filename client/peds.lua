@@ -14,7 +14,7 @@ CreateThread(function()
             {
                 icon = "fa-solid fa-seedling",
                 label = "Purchase Supplies",
-                event = 'foraging:client:GetForageLocation',
+                event = 'foraging:client:GetRandomForageLocation',
                 distance = 2,
             },
         },

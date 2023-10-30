@@ -105,3 +105,16 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
         })
     end
 end)
+
+----------------------
+--Choose Random Zone--
+----------------------
+
+RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
+    local player = cache.ped
+
+    local randomLocation = math.random(1, #Config.ForageLocations)
+    local randomField = Config.ForageLocations[randomLocation]
+
+    print("randomField", json.encode(randomField, {indent = true}))
+end)
