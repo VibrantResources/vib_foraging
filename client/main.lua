@@ -116,5 +116,32 @@ RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
     local randomLocation = math.random(1, #Config.ForageLocations)
     local randomField = Config.ForageLocations[randomLocation]
 
-    print("randomField", json.encode(randomField, {indent = true}))
+    lib.alertDialog({
+        header = "Mr Drug Man says:",
+        content = "So ... you wanna know where I get my supply?"
+        .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
+        centered = true,
+        cancel = false
+    })
+
+    SellingBlips(randomField)
 end)
+
+function SellingBlips(randomField)
+    forageBlip = AddBlipForRadius(randomField.ZoneCoords, 30.0)
+    SetBlipAlpha(forageBlip, 175)
+    SetBlipColour(forageBlip, 2)
+
+    CreateThread(function()
+        while true do
+            local playerCoords = GetEntityCoords(PlayerPedId())
+            local distance = #(playerCoords - randomField.ZoneCoords)
+    
+            if distance < 10 then
+                RemoveBlip(forageBlip)
+                break
+            end
+            Wait(10)
+        end
+    end)
+end

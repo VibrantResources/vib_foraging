@@ -15,12 +15,12 @@ Config.ForageLocations = {
         ZoneName = 'Big Shroom Tings',
         AmountOfMushrooms = 5,
         ZoneCoords = vector3(1601.67, 3222.11, 40.4),
-        ZoneRadius = 10,
+        ZoneRadius = 15,
     },
     {
         ZoneName = 'Small Shroom Tings',
         AmountOfMushrooms = 5,
         ZoneCoords = vector3(1635.03, 3231.14, 40.41),
-        ZoneRadius = 10,
+        ZoneRadius = 15,
     },
 }
