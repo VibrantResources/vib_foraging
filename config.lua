@@ -4,6 +4,12 @@ Config.Debug = true
 Config.RandomLocationFindMaxAttempts = 50
 Config.MushroomModel = "apa_mp_h_acc_box_trinket_01"
 
+Config.DealerPed = {
+    PedModel = "s_m_m_movspace_01",
+    Location = vector4(1619.52, 3216.23, 39.46, 193.79),
+
+}
+
 Config.ForageLocations = {
     {
         ZoneName = 'Big Shroom Tings',

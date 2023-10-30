@@ -34,8 +34,8 @@ function SpawnMushrooms(zone)
             spawnedMushrooms = spawnedMushrooms + 1
 
             local mushroomZone = exports.ox_target:addSphereZone({
-                coords = randomCoords,
-                radius = 1,
+                coords = vector3(randomCoords.x, randomCoords.y, randomCoords.z-1.0),
+                radius = 0.5,
                 debug = Config.Debug,
                 options = {
                     {
@@ -76,7 +76,7 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
             mouse = false
         },
         anim = {
-            dict = 'amb@world_human_hammering@male@base',
+            dict = 'amb@world_human_gardener_plant@male@base',
             clip = 'base',
             flag = 1,
         },
