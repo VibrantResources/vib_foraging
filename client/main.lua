@@ -44,6 +44,7 @@ function SpawnMushrooms(zone)
                         label = 'Gather shrooooms',
                         args = {
                             mushroom = mushroom,
+                            ZoneInfo = zone,
                         },
                     },
                 }
@@ -88,6 +89,7 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
         --     },
         -- }
     }) then
+        TriggerServerEvent('foraging:server:PickupMushroom', data.args.ZoneInfo)
         exports.ox_target:removeZone(mushroomsInfo[data.args.mushroom].zoneId)
         DeleteObject(data.args.mushroom)
         mushroomsInfo[data.args.mushroom] = nil
