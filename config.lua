@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.Debug = true
+Config.Debug = false
 Config.RandomLocationFindMaxAttempts = 50
 Config.MushroomModel = "mushroom"
 
