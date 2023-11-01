@@ -2,7 +2,7 @@ Config = Config or {}
 
 Config.Debug = true
 Config.RandomLocationFindMaxAttempts = 50
-Config.MushroomModel = "apa_mp_h_acc_box_trinket_01"
+Config.MushroomModel = "mushroom"
 
 Config.DealerPed = {
     PedModel = "s_m_m_movspace_01",
@@ -16,11 +16,13 @@ Config.ForageLocations = {
         AmountOfMushrooms = 5,
         ZoneCoords = vector3(1601.67, 3222.11, 40.4),
         ZoneRadius = 15,
+        MushroomModel = "prop_stoneshroom1",
     },
     {
         ZoneName = 'Small Shroom Tings',
         AmountOfMushrooms = 5,
         ZoneCoords = vector3(1635.03, 3231.14, 40.41),
         ZoneRadius = 15,
+        MushroomModel = "mushroom",
     },
 }

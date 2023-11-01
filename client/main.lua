@@ -25,10 +25,10 @@ function SpawnMushrooms(zone)
     while spawnedMushrooms < zone.AmountOfMushrooms do
         Wait(750)
         local randomCoords = getRandomPointInSphere(zone.ZoneCoords, zone.ZoneRadius)
-        local occupied = IsObjectNearPoint(Config.MushroomModel, randomCoords, 1.0)
+        local occupied = IsObjectNearPoint(zone.MushroomModel, randomCoords, 1.0)
 
         if not occupied then
-            mushroom = CreateObject(Config.MushroomModel, randomCoords.x, randomCoords.y, randomCoords.z, true)
+            mushroom = CreateObject(zone.MushroomModel, randomCoords.x, randomCoords.y, randomCoords.z, true)
             PlaceObjectOnGroundProperly(mushroom)
             FreezeEntityPosition(mushroom, true)
             spawnedMushrooms = spawnedMushrooms + 1
@@ -62,7 +62,6 @@ end
 
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
     local player = cache.ped
-    print(json.encode(data, {indent = true}))
 
     if lib.progressCircle({
         lable = "Foraging for shrooommmssss",
@@ -112,7 +111,6 @@ end)
 
 RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
     local player = cache.ped
-
     local randomLocation = math.random(1, #Config.ForageLocations)
     local randomField = Config.ForageLocations[randomLocation]
 
