@@ -13,8 +13,9 @@ CreateThread(function()
         options = {
             {
                 icon = "fa-solid fa-seedling",
+                iconColor = "green",
                 label = "Purchase Supplies",
-                event = 'foraging:client:GetRandomForageLocation',
+                event = 'foraging:client:MushroomMenu',
                 distance = 2,
             },
         },

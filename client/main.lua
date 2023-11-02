@@ -116,15 +116,26 @@ RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
     local randomLocation = math.random(1, #Config.ForageLocations)
     local randomField = Config.ForageLocations[randomLocation]
 
-    lib.alertDialog({
-        header = "Mr Drug Man says:",
-        content = "So ... you wanna know where I get my supply?"
-        .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
-        centered = true,
-        cancel = false
-    })
+	lib.callback("foraging:server:GetCooldown", false, function(cooldown)
+        if cooldown > 0 then
+            lib.alertDialog({
+				header = "Slow down there, bucko ...",
+				content = "That patch has already been harvested, friend!",
+				centered = true,
+			})
+            return
+        end
 
-    SellingBlips(randomField)
+        lib.alertDialog({
+            header = "Mr Drug Man says:",
+            content = "So ... you wanna know where I get my supply?"
+            .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
+            centered = true,
+            cancel = false
+        })
+        SellingBlips(randomField)
+        TriggerServerEvent("foraging:server:TriggerCooldown", randomField)
+    end, randomField)
 end)
 
 function SellingBlips(randomField)
