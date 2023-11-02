@@ -80,14 +80,14 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
             clip = 'base',
             flag = 1,
         },
-        -- prop = {
-        --     {
-        --         model = `w_me_hammer`,
-        --         bone = 57005,
-        --         pos = vec3(0.05, -0.01, 0.0),
-        --         rot = vec3(75.0, 180.0, 150.0)
-        --     },
-        -- }
+        prop = {
+            {
+                model = `prop_cs_trowel`,
+                bone = 57005,
+                pos = vec3(0.05, -0.01, 0.0),
+                rot = vec3(75.0, 90.0, -100.0)
+            },
+        }
     }) then
         TriggerServerEvent('foraging:server:PickupMushroom', data.args.ZoneInfo)
         exports.ox_target:removeZone(mushroomsInfo[data.args.mushroom].zoneId)

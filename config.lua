@@ -3,6 +3,7 @@ Config = Config or {}
 Config.Debug = true
 Config.RandomLocationFindMaxAttempts = 50
 Config.MushroomModel = "mushroom"
+Config.MoneyItem = "money"
 
 Config.DealerPed = {
     PedModel = "s_m_m_movspace_01",
@@ -19,6 +20,7 @@ Config.ForageLocations = {
         MushroomModel = "prop_stoneshroom1",
         MushroomItem = "schwingleborp_mushrooms",
         AmountPerPickup = math.random(1, 3),
+        ZoneCost = 1500,
     },
     {
         ZoneName = 'Small Shroom Tings',
@@ -28,5 +30,6 @@ Config.ForageLocations = {
         MushroomModel = "mushroom",
         MushroomItem = "tangletoes_mushrooms",
         AmountPerPickup = math.random(1, 3),
+        ZoneCost = 1000,
     },
 }
