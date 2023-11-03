@@ -22,8 +22,8 @@ Config.ForageLocations = {
         AmountPerPickup = math.random(1, 3),
         ZoneCost = 1500,
         Cooldown = { -- How long in minutes between selling bulk drugs to this specific ped
-        Minutes = 5,
-    },
+            Minutes = 5,
+        },
     },
     {
         ZoneName = 'Small Shroom Tings',
@@ -35,7 +35,7 @@ Config.ForageLocations = {
         AmountPerPickup = math.random(1, 3),
         ZoneCost = 1000,
         Cooldown = { -- How long in minutes between selling bulk drugs to this specific ped
-        Minutes = 5,
-    },
+            Minutes = 5,
+        },
     },
 }
