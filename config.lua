@@ -24,6 +24,12 @@ Config.ForageLocations = {
         Cooldown = { -- How long in minutes between selling bulk drugs to this specific ped
             Minutes = 5,
         },
+        ContextMenuInfo = {
+            Title = "Big Shroom Tings",
+            Description = "If you're after the biggest bang for your buck, then you've chose the right area!",
+            Icon = "fa-solid fa-fire",
+            IconColor = "red",
+        },
     },
     {
         ZoneName = 'Small Shroom Tings',
@@ -36,6 +42,12 @@ Config.ForageLocations = {
         ZoneCost = 1000,
         Cooldown = { -- How long in minutes between selling bulk drugs to this specific ped
             Minutes = 5,
+        },
+        ContextMenuInfo = {
+            Title = "Small Shroom Tings",
+            Description = "A milder effect but people seem to love the constant vibe ...",
+            Icon = "fa-solid fa-water",
+            IconColor = "blue",
         },
     },
 }

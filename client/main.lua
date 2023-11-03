@@ -8,6 +8,35 @@ pickingAllowed = true
 mushroomsSpawned = false
 mushroomsInfo = {}
 
+----------------
+--Events Stuff--
+----------------
+
+RegisterNetEvent('foraging:client:ChooseLocation', function(data)
+    local player = cache.ped
+
+    lib.callback("foraging:server:GetCooldown", false, function(cooldown)
+        if cooldown > 0 then
+            lib.alertDialog({
+                header = "Slow down there, bucko ...",
+                content = "That patch has already been harvested, friend!",
+                centered = true,
+            })
+            return
+        end
+
+        lib.alertDialog({
+            header = "Mr Drug Man says:",
+            content = "So ... you wanna know where I get my supply?"
+            .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
+            centered = true,
+            cancel = false
+        })
+        SellingBlips(data)
+        TriggerServerEvent("foraging:server:TriggerCooldown", data)
+    end, data)
+end)
+
 -------------------
 --Object Spawning--
 -------------------
@@ -111,32 +140,36 @@ end)
 --Choose Random Zone--
 ----------------------
 
-RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
-    local player = cache.ped
-    local randomLocation = math.random(1, #Config.ForageLocations)
-    local randomField = Config.ForageLocations[randomLocation]
+-- RegisterNetEvent('foraging:client:GetRandomForageLocation', function()
+--     local player = cache.ped
+--     local randomLocation = math.random(1, #Config.ForageLocations)
+--     local randomField = Config.ForageLocations[randomLocation]
 
-	lib.callback("foraging:server:GetCooldown", false, function(cooldown)
-        if cooldown > 0 then
-            lib.alertDialog({
-				header = "Slow down there, bucko ...",
-				content = "That patch has already been harvested, friend!",
-				centered = true,
-			})
-            return
-        end
+-- 	lib.callback("foraging:server:GetCooldown", false, function(cooldown)
+--         if cooldown > 0 then
+--             lib.alertDialog({
+-- 				header = "Slow down there, bucko ...",
+-- 				content = "That patch has already been harvested, friend!",
+-- 				centered = true,
+-- 			})
+--             return
+--         end
 
-        lib.alertDialog({
-            header = "Mr Drug Man says:",
-            content = "So ... you wanna know where I get my supply?"
-            .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
-            centered = true,
-            cancel = false
-        })
-        SellingBlips(randomField)
-        TriggerServerEvent("foraging:server:TriggerCooldown", randomField)
-    end, randomField)
-end)
+--         lib.alertDialog({
+--             header = "Mr Drug Man says:",
+--             content = "So ... you wanna know where I get my supply?"
+--             .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
+--             centered = true,
+--             cancel = false
+--         })
+--         SellingBlips(randomField)
+--         TriggerServerEvent("foraging:server:TriggerCooldown", randomField)
+--     end, randomField)
+-- end)
+
+-----------------
+--Blip Controls--
+-----------------
 
 function SellingBlips(randomField)
     forageBlip = AddBlipForRadius(randomField.ZoneCoords, 30.0)
