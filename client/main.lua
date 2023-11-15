@@ -1,13 +1,5 @@
 QBCore = exports["qb-core"]:GetCoreObject()
 
--------------
---Variables--
--------------
-
-pickingAllowed = true
-mushroomsSpawned = false
-mushroomsInfo = {}
-
 ----------------
 --Events Stuff--
 ----------------
@@ -33,6 +25,7 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
             cancel = false
         })
         SellingBlips(data)
+        TriggerServerEvent('foraging:server:CreateMushrooms', data)
         TriggerServerEvent("foraging:server:TriggerCooldown", data)
     end, data)
 end)
@@ -41,54 +34,32 @@ end)
 --Object Spawning--
 -------------------
 
-function SpawnMushrooms(zone)
-    local playerPed = cache.ped
-    local spawnedMushrooms = 0
+RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, mushroom, data)
+    local targetCoords = vector3(coords.x, coords.y, coords.z)
 
-    if mushroomsSpawned then return end
-    if spawnedMushrooms >= zone.AmountOfMushrooms then
-        mushroomsSpawned = true
-        return
-    end
-    
-    while spawnedMushrooms < zone.AmountOfMushrooms do
-        Wait(750)
-        local randomCoords = getRandomPointInSphere(zone.ZoneCoords, zone.ZoneRadius)
-        local occupied = IsObjectNearPoint(zone.MushroomModel, randomCoords, 1.0)
+    local mushroomZone = exports.ox_target:addSphereZone({
+        coords = vec3(targetCoords),
+        radius = 0.5,
+        debug = Config.Debug,
+        options = {
+            {
+                distance = 2,
+                icon = "fa-solid fa-box-archive",
+                label = "Harvest mushrooms",
+                event = 'foraging:client:PickUpMushroom',
+                args = {
+                    uniqueMushroom = mushroom,
+                    areaData = data,
+                },
+            },
+        },
+    })
+    TriggerServerEvent("foraging:server:UpdateMushroom", mushroom, mushroomZone)
+end)
 
-        if not occupied then
-            mushroom = CreateObject(zone.MushroomModel, randomCoords.x, randomCoords.y, randomCoords.z, true)
-            PlaceObjectOnGroundProperly(mushroom)
-            FreezeEntityPosition(mushroom, true)
-            spawnedMushrooms = spawnedMushrooms + 1
-
-            local mushroomZone = exports.ox_target:addSphereZone({
-                coords = vector3(randomCoords.x, randomCoords.y, randomCoords.z-1.0),
-                radius = 0.5,
-                debug = Config.Debug,
-                options = {
-                    {
-                        event = "foraging:client:PickUpMushroom",
-                        icon = 'fa-solid fa-hand',
-                        label = 'Gather shrooooms',
-                        args = {
-                            mushroom = mushroom,
-                            ZoneInfo = zone,
-                        },
-                    },
-                }
-            })
-            mushroomsInfo[mushroom] = {
-                zoneId = mushroomZone
-            }
-        else
-            if Config.Debug then 
-                print("An object is already spawned here")
-            end
-            Wait(10)
-        end
-    end
-end
+RegisterNetEvent("foraging:client:DestroyTargetZone", function(zoneId)
+    exports.ox_target:removeZone(zoneId)
+end)
 
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
     local player = cache.ped
@@ -118,10 +89,7 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
             },
         }
     }) then
-        TriggerServerEvent('foraging:server:PickupMushroom', data.args.ZoneInfo)
-        exports.ox_target:removeZone(mushroomsInfo[data.args.mushroom].zoneId)
-        DeleteObject(data.args.mushroom)
-        mushroomsInfo[data.args.mushroom] = nil
+        TriggerServerEvent("foraging:server:PickupMushroom", data)
         lib.notify({
             title = "Attention",
             description = "You've collected some mushrooms",
@@ -172,14 +140,14 @@ end)
 -----------------
 
 function SellingBlips(randomField)
-    forageBlip = AddBlipForRadius(randomField.ZoneCoords, 30.0)
+    forageBlip = AddBlipForRadius(randomField.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
 
     CreateThread(function()
         while true do
             local playerCoords = GetEntityCoords(PlayerPedId())
-            local distance = #(playerCoords - randomField.ZoneCoords)
+            local distance = #(playerCoords - randomField.AreaCoords)
     
             if distance < 10 then
                 RemoveBlip(forageBlip)
