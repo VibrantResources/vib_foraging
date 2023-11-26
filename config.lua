@@ -6,7 +6,10 @@ Config.MoneyItem = "money"
 Config.DealerPed = {
     PedModel = "s_m_m_movspace_01",
     Location = vector4(1760.46, 3115.89, 58.15, 317.6),
-
+    ShopInfo = {
+        ShopName = "Willys wonderous waves",
+        ShopDescription = "These groovy green guys are the gateway to another plane maaaan ..."
+    }
 }
 
 Config.ForageLocations = {

@@ -1,7 +1,6 @@
 CreateThread(function()
-    local ped = lib.requestModel(Config.DealerPed.PedModel)
-
-    dealer = CreatePed(1, ped, Config.DealerPed.Location, false, true)
+    lib.requestModel(Config.DealerPed.PedModel)
+    dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location, false, true)
     SetEntityInvincible(dealer, true)
     SetBlockingOfNonTemporaryEvents(dealer, true)
     FreezeEntityPosition(dealer, true)
@@ -17,6 +16,7 @@ CreateThread(function()
                 label = "Purchase Supplies",
                 event = 'foraging:client:MushroomMenu',
                 distance = 2,
+                args = Config.DealerPed.ShopInfo,
             },
         },
     })

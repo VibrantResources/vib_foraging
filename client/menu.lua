@@ -1,5 +1,33 @@
-RegisterNetEvent('foraging:client:MushroomMenu', function()
+RegisterNetEvent('foraging:client:MushroomMenu', function(data)
 	local headerMenu = {}
+
+    headerMenu[#headerMenu + 1] = {
+        title = data.args.ShopName,
+        description = data.args.ShopDescription,
+        icon = "fa-solid fa-plant",
+        iconColor = "green",
+    }
+
+    headerMenu[#headerMenu + 1] = {
+        title = "Locations",
+        description = "So, you wanna know where I'm picking all these groovy shrooms, eh ...",
+        icon = "fa-solid fa-flower",
+        iconColor = "green",
+        event = 'foraging:client:LocationMenu',
+    }
+
+    lib.registerContext({
+        id = 'mushroom_menu',
+        title = "Lucid lougning",
+        options = headerMenu
+    })
+
+    lib.showContext('mushroom_menu')
+end)
+
+RegisterNetEvent('foraging:client:LocationMenu', function()
+    local player = cache.ped
+    local headerMenu = {}
 
     for _, Area in pairs(Config.ForageLocations) do
         headerMenu[#headerMenu + 1] = {
@@ -16,10 +44,10 @@ RegisterNetEvent('foraging:client:MushroomMenu', function()
     end
 
     lib.registerContext({
-        id = 'mushroom_menu',
-        title = "Funky Happenings",
+        id = 'location_menu',
+        title = "Funcky findings",
         options = headerMenu
     })
 
-    lib.showContext('mushroom_menu')
+    lib.showContext('location_menu')
 end)
