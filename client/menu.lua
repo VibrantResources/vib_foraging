@@ -1,14 +1,17 @@
 RegisterNetEvent('foraging:client:MushroomMenu', function()
 	local headerMenu = {}
 
-    for k, v in pairs(Config.ForageLocations) do
+    for _, Area in pairs(Config.ForageLocations) do
         headerMenu[#headerMenu + 1] = {
-            title = v.ContextMenuInfo.Title,
-            description = v.ContextMenuInfo.Description,
-            icon = v.ContextMenuInfo.Icon,
-            iconColor = v.ContextMenuInfo.IconColor,
+            title = Area.ContextMenuInfo.Title,
+            description = Area.ContextMenuInfo.Description,
+            metadata = {
+                { "This'll cost you $"..Area.AreaCost }
+            },
+            icon = Area.ContextMenuInfo.Icon,
+            iconColor = Area.ContextMenuInfo.IconColor,
             event = 'foraging:client:ChooseLocation',
-            args = v,
+            args = Area,
         }
     end
 

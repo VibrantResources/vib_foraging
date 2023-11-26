@@ -6,26 +6,35 @@ QBCore = exports["qb-core"]:GetCoreObject()
 
 RegisterNetEvent('foraging:client:ChooseLocation', function(data)
     local player = cache.ped
+    local hasMoney = exports.ox_inventory:Search('count', Config.MoneyItem)
 
-    lib.callback("foraging:server:GetCooldown", false, function(cooldown)
-        if cooldown > 0 then
+    if hasMoney >= data.AreaCost then
+        lib.callback("foraging:server:GetCooldown", false, function(cooldown)
+            if cooldown > 0 then
+                lib.alertDialog({
+                    header = "Slow down there, bucko ...",
+                    content = "That patch has already been harvested, friend!",
+                    centered = true,
+                })
+                return
+            end
+
             lib.alertDialog({
-                header = "Slow down there, bucko ...",
-                content = "That patch has already been harvested, friend!",
+                header = "Mr Drug Man says:",
+                content = "So ... you wanna know where I get my supply?"
+                .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
                 centered = true,
+                cancel = false
             })
-            return
-        end
-
-        lib.alertDialog({
-            header = "Mr Drug Man says:",
-            content = "So ... you wanna know where I get my supply?"
-            .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
-            centered = true,
-            cancel = false
+            TriggerServerEvent('foraging:server:MoneyCheck', data)
+        end, data)
+    else
+        lib.notify({
+            title = 'Attention',
+            description = "You don't have enough money!",
+            type = 'error'
         })
-        SellingBlips(data)
-    end, data)
+    end
 end)
 
 -------------------
@@ -135,7 +144,7 @@ end)
 --Blip Controls--
 -----------------
 
-function SellingBlips(data)
+RegisterNetEvent('foraging:client:SellingBlips', function(data)
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
@@ -154,7 +163,7 @@ function SellingBlips(data)
             Wait(10)
         end
     end)
-end
+end)
 
 -------------
 --Callbacks--

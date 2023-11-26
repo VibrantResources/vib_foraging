@@ -37,7 +37,6 @@ RegisterServerEvent("foraging:server:UpdateMushroom", function(mushroom, mushroo
 end)
 
 RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mushroom, destroying zone & object too
-    local src = source
 	local zoneId = WildMushrooms[data.args.uniqueMushroom].ZoneId
 	local mushroomStuff = data.args.areaData.MushroomsInfo
 
@@ -53,6 +52,12 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 			description = 'Your inventory is full',
 			type = 'error'
 		})
+	end
+end)
+
+RegisterNetEvent('foraging:server:MoneyCheck', function(data)
+	if exports.ox_inventory:RemoveItem(source, Config.MoneyItem, data.AreaCost) then
+		TriggerClientEvent('foraging:client:SellingBlips', source, data)
 	end
 end)
 
