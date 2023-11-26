@@ -25,8 +25,6 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
             cancel = false
         })
         SellingBlips(data)
-        TriggerServerEvent('foraging:server:CreateMushrooms', data)
-        TriggerServerEvent("foraging:server:TriggerCooldown", data)
     end, data)
 end)
 
@@ -34,11 +32,9 @@ end)
 --Object Spawning--
 -------------------
 
-RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, mushroom, data)
-    local targetCoords = vector3(coords.x, coords.y, coords.z)
-
+RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, zCoord, mushroom, data)
     local mushroomZone = exports.ox_target:addSphereZone({
-        coords = vec3(targetCoords),
+        coords = vector(coords.x, coords.y, zCoord),
         radius = 0.5,
         debug = Config.Debug,
         options = {
@@ -139,17 +135,19 @@ end)
 --Blip Controls--
 -----------------
 
-function SellingBlips(randomField)
-    forageBlip = AddBlipForRadius(randomField.AreaCoords, 30.0)
+function SellingBlips(data)
+    forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
 
     CreateThread(function()
         while true do
             local playerCoords = GetEntityCoords(PlayerPedId())
-            local distance = #(playerCoords - randomField.AreaCoords)
+            local distance = #(playerCoords - data.AreaCoords)
     
-            if distance < 10 then
+            if distance < 75 then
+                TriggerServerEvent('foraging:server:CreateMushrooms', data)
+                TriggerServerEvent("foraging:server:TriggerCooldown", data)
                 RemoveBlip(forageBlip)
                 break
             end
@@ -157,3 +155,13 @@ function SellingBlips(randomField)
         end
     end)
 end
+
+-------------
+--Callbacks--
+-------------
+
+lib.callback.register('foraging:client:GetZCoords', function(coords)
+    local ground, z = GetGroundZFor_3dCoord(coords.x, coords.y, coords.z, 0)
+
+    return z
+end)

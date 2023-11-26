@@ -13,18 +13,20 @@ WildMushrooms = {}
 RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mushroom objects after selecting area
 	for i = 1, data.MushroomsInfo.MushroomAmount do
 		Wait(1000)
-		local coords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
+		local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
 
-		local mushroom = CreateObjectNoOffset(data.MushroomsInfo.MushroomModel, coords.x, coords.y, coords.z, true, true, false)
-		FreezeEntityPosition(mushroom, true)
-		local id = os.time() .. QBCore.Shared.RandomInt(3)
+		lib.callback('foraging:client:GetZCoords', -1, function(zCoord)
+			local mushroom = CreateObject(data.MushroomsInfo.MushroomModel, randomCoords.x, randomCoords.y, zCoord, true, true, false)
+			FreezeEntityPosition(mushroom, true)
+			local id = os.time() .. QBCore.Shared.RandomInt(3)
 
-		WildMushrooms[mushroom] = {
-			id = id,
-			Coords = coords,
-			ZoneId = nil,
-		}
-		TriggerClientEvent("foraging:client:CreateTargetZone", -1, coords, mushroom, data)
+			WildMushrooms[mushroom] = {
+				id = id,
+				Coords = coords,
+				ZoneId = nil,
+			}
+			TriggerClientEvent("foraging:client:CreateTargetZone", -1, randomCoords, zCoord, mushroom, data)
+		end, randomCoords)
 	end
 end)
 

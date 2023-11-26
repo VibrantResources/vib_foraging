@@ -5,14 +5,14 @@ Config.MoneyItem = "money"
 
 Config.DealerPed = {
     PedModel = "s_m_m_movspace_01",
-    Location = vector4(1619.52, 3216.23, 39.46, 193.79),
+    Location = vector4(1760.46, 3115.89, 58.15, 317.6),
 
 }
 
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu
-        AreaCoords = vector3(1601.67, 3222.11, 40.4), -- Where mushroom area is
+        AreaCoords = vector3(1760.46, 3115.89, 58.15), -- Where mushroom area is
         AreaRadius = 15, -- Radius mushrooms will spawn randomly around [AreaCoords] above
         AreaCost = 1500, -- How much it charges the player to be given each location
         MushroomsInfo = {
