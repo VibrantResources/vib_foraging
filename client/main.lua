@@ -145,6 +145,7 @@ end)
 -----------------
 
 RegisterNetEvent('foraging:client:SellingBlips', function(data)
+    TriggerServerEvent("foraging:server:TriggerCooldown", data)
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
@@ -156,7 +157,6 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
     
             if distance < 75 then
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
-                TriggerServerEvent("foraging:server:TriggerCooldown", data)
                 RemoveBlip(forageBlip)
                 break
             end

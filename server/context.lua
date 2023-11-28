@@ -1,4 +1,3 @@
 Context = {
-    AreaInfo = {},
     Cooldowns = {},
 }
