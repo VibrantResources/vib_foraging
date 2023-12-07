@@ -2,8 +2,8 @@ RegisterNetEvent('foraging:client:MushroomMenu', function(data)
 	local headerMenu = {}
 
     headerMenu[#headerMenu + 1] = {
-        title = data.args.ShopName,
-        description = data.args.ShopDescription,
+        title = "Willys wonderous waves",
+        description = "These groovy green guys are the gateway to another plane maaaan ...",
         icon = "fa-solid fa-plant",
         iconColor = "green",
     }
@@ -45,7 +45,7 @@ RegisterNetEvent('foraging:client:LocationMenu', function()
 
     lib.registerContext({
         id = 'location_menu',
-        title = "Funcky findings",
+        title = "Funky findings",
         options = headerMenu
     })
 
