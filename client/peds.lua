@@ -26,10 +26,23 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
     local player = cache.ped
 
     for i = 1, data.NudistInfo.AmountOfNudists do
+        local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
         Wait(1000)
-        nudistPed = CreatePed(1, data.NudistInfo.NudistModel, data.AreaCoords, true, true)
+        nudistPed = CreatePed(1, data.NudistInfo.NudistModel, randomCoords.x, randomCoords.y, randomCoords.z, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
         SetEntityInvincible(nudistPed, true)
         TaskWanderInArea(nudistPed, data.AreaCoords.x, data.AreaCoords.y, data.AreaCoords.z, data.AreaRadius, 5, 2.0)
+
+        exports.ox_target:addLocalEntity(nudistPed, {
+            {
+                icon = 'fas fa-shopping-basket',
+                label = "Speak to Nudist",
+                onSelect = function()
+                    print("Nudist spoken to")
+                end,
+                iconColor = "green",
+                distance = 1.5
+            }
+		})
     end
 end)
