@@ -95,11 +95,6 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
         }
     }) then
         TriggerServerEvent("foraging:server:PickupMushroom", data)
-        lib.notify({
-            title = "Attention",
-            description = "You've collected some mushrooms",
-            type = 'success',
-        })
     else
         lib.notify({
             title = "Canceled",

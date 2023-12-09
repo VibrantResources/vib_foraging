@@ -46,7 +46,7 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 		DeleteEntity(data.args.uniqueMushroom)
 		TriggerClientEvent('foraging:client:DestroyTargetZone', -1, zoneId)
 	else
-		lib.notify({
+		lib.notify(source, {
 			title = 'Full inventory',
 			description = 'Your inventory is full',
 			type = 'error'
