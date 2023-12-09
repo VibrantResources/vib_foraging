@@ -8,6 +8,14 @@ Config.DealerPed = {
     Location = vector4(1760.46, 3115.89, 58.15, 317.6), -- Location shop ped spawns
 }
 
+Config.MushroomShop = {
+    MoneyItem = "black_money",
+    ItemsForSale = {
+        schwingleborp_mushrooms = 100,
+        squishybop_mushrooms = 100,
+    }
+}
+
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu

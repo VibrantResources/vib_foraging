@@ -13,7 +13,7 @@ CreateThread(function()
             {
                 icon = "fa-solid fa-seedling",
                 iconColor = "green",
-                label = "Purchase Supplies",
+                label = "Speak to Groovy dude",
                 event = 'foraging:client:MushroomMenu',
                 distance = 2,
                 args = Config.DealerPed.ShopInfo,

@@ -1,9 +1,10 @@
-RegisterNetEvent('foraging:client:MushroomMenu', function(data)
+RegisterNetEvent('foraging:client:MushroomMenu', function(data) -- Main menu after talking to Ped
 	local headerMenu = {}
 
     headerMenu[#headerMenu + 1] = {
         title = "Willys wonderous waves",
         description = "These groovy green guys are the gateway to another plane maaaan ...",
+        event = 'foraging:client:ShopMenu',
         icon = "fa-solid fa-plant",
         iconColor = "green",
     }
@@ -25,7 +26,7 @@ RegisterNetEvent('foraging:client:MushroomMenu', function(data)
     lib.showContext('mushroom_menu')
 end)
 
-RegisterNetEvent('foraging:client:LocationMenu', function()
+RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets players choose locations
     local player = cache.ped
     local headerMenu = {}
 
@@ -50,4 +51,31 @@ RegisterNetEvent('foraging:client:LocationMenu', function()
     })
 
     lib.showContext('location_menu')
+end)
+
+RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets players sell items
+    local player = cache.ped
+    local headerMenu = {}
+
+    for item, price in pairs(Config.MushroomShop.ItemsForSale) do
+        headerMenu[#headerMenu + 1] = {
+            title = exports.ox_inventory:Items(item).label,
+            description = "I can buy these "..exports.ox_inventory:Items(item).label.." for $"..price.." each",
+            -- icon = Area.ContextMenuInfo.Icon,
+            -- iconColor = Area.ContextMenuInfo.IconColor,
+            serverEvent = 'foraging:server:SellMushrooms',
+            args = {
+                item = item,
+                price = price,
+            },
+        }
+    end
+
+    lib.registerContext({
+        id = 'shop_menu',
+        title = "Willys wonderous waves",
+        options = headerMenu
+    })
+
+    lib.showContext('shop_menu')
 end)
