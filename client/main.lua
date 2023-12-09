@@ -49,7 +49,7 @@ RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, zCoord, mu
         options = {
             {
                 distance = 2,
-                icon = "fa-solid fa-box-archive",
+                icon = "fa-solid fa-seedling",
                 label = "Harvest mushrooms",
                 event = 'foraging:client:PickUpMushroom',
                 args = {

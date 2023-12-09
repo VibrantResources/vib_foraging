@@ -11,7 +11,7 @@ CreateThread(function()
         debug = Config.Debug,
         options = {
             {
-                icon = "fa-solid fa-seedling",
+                icon = "fa-solid fa-comment-dots",
                 iconColor = "green",
                 label = "Speak to Groovy dude",
                 event = 'foraging:client:MushroomMenu',
