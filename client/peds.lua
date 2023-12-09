@@ -29,6 +29,7 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         Wait(1000)
         nudistPed = CreatePed(1, data.NudistInfo.NudistModel, data.AreaCoords, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
-        TaskWanderInArea(nudistPed, data.AreaCoords.x, data.AreaCoords.y, data.AreaCoords.z, 25.0, 5, 2)
+        SetEntityInvincible(nudistPed, true)
+        TaskWanderInArea(nudistPed, data.AreaCoords.x, data.AreaCoords.y, data.AreaCoords.z, data.AreaRadius, 5, 2.0)
     end
 end)
