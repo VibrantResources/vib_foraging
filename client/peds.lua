@@ -1,3 +1,15 @@
+-----------------
+--Ped Variables--
+-----------------
+
+Nudists = {
+    AlreadySpoke = false,
+}
+
+--------------------
+--Ped Spawn Thread--
+--------------------
+
 CreateThread(function()
     lib.requestModel(Config.DealerPed.PedModel)
     dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location, true, true)
@@ -22,6 +34,10 @@ CreateThread(function()
     })
 end)
 
+-----------------------
+--Nudist Spawn Events--
+-----------------------
+
 RegisterNetEvent('foraging:client:NudistSpawn', function(data)
     for i = 1, data.NudistInfo.AmountOfNudists do
         local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
@@ -33,16 +49,39 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         SetEntityInvincible(nudistPed, true)
         TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
-        exports.ox_target:addLocalEntity(nudistPed, {
+        Nudists[nudistPed] = {
+            AlreadySpoke = false,
+        }
+
+        local entityTarget = exports.ox_target:addLocalEntity(nudistPed, {
             {
                 icon = 'fas fa-shopping-basket',
                 label = "Speak to Nudist",
-                onSelect = function()
-                    print("Nudist spoken to")
+                onSelect = function(args)
+                    TriggerEvent('foraging:client:SpeakToNudist', args)
                 end,
                 iconColor = "green",
                 distance = 1.5
             }
 		})
+    end
+end)
+
+RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
+    if not Nudists[data.entity].AlreadySpoke then
+        lib.notify({
+            title = 'Hello',
+            description = "Hi there! Wonderful day for some foraging, eh?",
+            type = 'success',
+        })
+        Nudists[data.entity] = {
+            AlreadySpoke = true,
+        }
+    else
+        lib.notify({
+            title = 'Busy',
+            description = "We already spoke ... don't you remember?",
+            type = 'attention',
+        })
     end
 end)
