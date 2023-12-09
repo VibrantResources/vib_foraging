@@ -20,7 +20,7 @@ Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu
         AreaCoords = vector3(1760.46, 3115.89, 58.15), -- Where mushroom area is
-        AreaRadius = 15, -- Radius mushrooms will spawn randomly around [AreaCoords] above
+        AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above
         AreaCost = 1500, -- How much it charges the player to be given each location
         MushroomsInfo = {
             MushroomAmount = 5, -- How many muhsrooms spawn

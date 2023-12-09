@@ -23,17 +23,15 @@ CreateThread(function()
 end)
 
 RegisterNetEvent('foraging:client:NudistSpawn', function(data)
-    local player = cache.ped
-    print(json.encode(data, {indent = true}))
     for i = 1, data.NudistInfo.AmountOfNudists do
         local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
         local ground, zCoord = GetGroundZFor_3dCoord(randomCoords.x, randomCoords.y, randomCoords.z, 0)
-        print(zCoord)
+
         Wait(1000)
         nudistPed = CreatePed(1, data.NudistInfo.NudistModel, randomCoords.x, randomCoords.y, zCoord, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
         SetEntityInvincible(nudistPed, true)
-        TaskWanderInArea(nudistPed, data.AreaCoords.x, data.AreaCoords.y, data.AreaCoords.z, data.AreaRadius, 15, 2.0)
+        TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
         exports.ox_target:addLocalEntity(nudistPed, {
             {
