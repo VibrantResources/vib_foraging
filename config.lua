@@ -29,8 +29,8 @@ Config.ForageLocations = {
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they pickup
         },
         NudistInfo = {
-            AmountOfNudists = 5,
-            NudistModel = "a_m_m_acult_01",
+            AmountOfNudists = 5, -- How many nudists spawn
+            NudistModel = "a_m_m_acult_01", -- Nudist ped model
         },
         Cooldown = {
             Minutes = 5, -- Specific area cooldown in minutes
@@ -52,6 +52,10 @@ Config.ForageLocations = {
             MushroomModel = "prop_stoneshroom1",
             MushroomItem = "squishybop_mushrooms",
             AmountPerPickup = 1,
+        },
+        NudistInfo = {
+            AmountOfNudists = 5,
+            NudistModel = "a_m_m_acult_01",
         },
         Cooldown = {
             Minutes = 5,
