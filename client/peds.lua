@@ -1,6 +1,6 @@
 CreateThread(function()
     lib.requestModel(Config.DealerPed.PedModel)
-    dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location, false, true)
+    dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location, true, true)
     SetEntityInvincible(dealer, true)
     SetBlockingOfNonTemporaryEvents(dealer, true)
     FreezeEntityPosition(dealer, true)
@@ -20,4 +20,15 @@ CreateThread(function()
             },
         },
     })
+end)
+
+RegisterNetEvent('foraging:client:NudistSpawn', function(data)
+    local player = cache.ped
+
+    for i = 1, data.NudistInfo.AmountOfNudists do
+        Wait(1000)
+        nudistPed = CreatePed(1, data.NudistInfo.NudistModel, data.AreaCoords, true, true)
+        SetBlockingOfNonTemporaryEvents(nudistPed, true)
+        TaskWanderInArea(nudistPed, data.AreaCoords.x, data.AreaCoords.y, data.AreaCoords.z, 25.0, 5, 2)
+    end
 end)

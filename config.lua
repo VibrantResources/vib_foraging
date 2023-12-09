@@ -28,6 +28,10 @@ Config.ForageLocations = {
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they pickup
         },
+        NudistInfo = {
+            AmountOfNudists = 5,
+            NudistModel = "a_m_m_acult_01",
+        },
         Cooldown = {
             Minutes = 5, -- Specific area cooldown in minutes
         },

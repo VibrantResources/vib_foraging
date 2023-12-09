@@ -61,8 +61,8 @@ RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets player
         headerMenu[#headerMenu + 1] = {
             title = exports.ox_inventory:Items(item).label,
             description = "I can buy these "..exports.ox_inventory:Items(item).label.." for $"..price.." each",
-            -- icon = Area.ContextMenuInfo.Icon,
-            -- iconColor = Area.ContextMenuInfo.IconColor,
+            icon = "fa-solid fa-sack-dollar",
+            iconColor = "green",
             serverEvent = 'foraging:server:SellMushrooms',
             args = {
                 item = item,
