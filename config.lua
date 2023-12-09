@@ -38,7 +38,7 @@ Config.ForageLocations = {
         MushroomsInfo = {
             MushroomAmount = 5,
             MushroomModel = "prop_stoneshroom1",
-            MushroomItem = "schwingleborp_mushrooms",
+            MushroomItem = "squishybop_mushrooms",
             AmountPerPickup = 1,
         },
         Cooldown = {
