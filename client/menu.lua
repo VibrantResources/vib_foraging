@@ -31,17 +31,30 @@ RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets pl
     local headerMenu = {}
 
     for _, Area in pairs(Config.ForageLocations) do
-        headerMenu[#headerMenu + 1] = {
-            title = Area.ContextMenuInfo.Title,
-            description = Area.ContextMenuInfo.Description,
-            metadata = {
-                { "This'll cost you $"..Area.AreaCost }
-            },
-            icon = Area.ContextMenuInfo.Icon,
-            iconColor = Area.ContextMenuInfo.IconColor,
-            event = 'foraging:client:ChooseLocation',
-            args = Area,
-        }
+        local cooldown = lib.callback.await("foraging:server:GetCooldown", false, Area)
+
+        if cooldown > 0 then
+            headerMenu[#headerMenu + 1] = {
+                title = Area.ContextMenuInfo.Title,
+                description = "This patch has been harvested! Don't over do it!",
+                readOnly = true,
+                icon = Area.ContextMenuInfo.Icon,
+                iconColor = Area.ContextMenuInfo.IconColor,
+            }
+        else
+            headerMenu[#headerMenu + 1] = {
+                title = Area.ContextMenuInfo.Title,
+                description = Area.ContextMenuInfo.Description,
+                disabled = cooldown > 0,
+                metadata = {
+                    { "This'll cost you $"..Area.AreaCost }
+                },
+                icon = Area.ContextMenuInfo.Icon,
+                iconColor = Area.ContextMenuInfo.IconColor,
+                event = 'foraging:client:ChooseLocation',
+                args = Area,
+            }
+        end
     end
 
     lib.registerContext({
@@ -74,6 +87,10 @@ RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets player
     lib.registerContext({
         id = 'shop_menu',
         title = "Willys wonderous waves",
+        menu = 'mushroom_menu',
+        onBack = function()
+            lib.showContext('mushroom_menu')
+        end,
         options = headerMenu
     })
 
