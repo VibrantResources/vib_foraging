@@ -19,8 +19,8 @@ Config.MushroomShop = {
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu
-        AreaCoords = vector3(1294.1, 3137.24, 40.41), -- Where mushroom area is
-        AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above
+        AreaCoords = vector3(1519.94, 3198.13, 39.41), -- Where mushroom area is
+        AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a decimal to allow peds to wander)
         AreaCost = 1500, -- How much it charges the player to be given each location
         MushroomsInfo = {
             MushroomAmount = 5, -- How many muhsrooms spawn
@@ -45,7 +45,7 @@ Config.ForageLocations = {
     {
         AreaName = 'Small Shroom Tings',
         AreaCoords = vector3(1635.03, 3231.14, 40.41),
-        AreaRadius = 15,
+        AreaRadius = 15.0,
         AreaCost = 1000,
         MushroomsInfo = {
             MushroomAmount = 5,

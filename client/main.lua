@@ -5,7 +5,6 @@ QBCore = exports["qb-core"]:GetCoreObject()
 ----------------
 
 RegisterNetEvent('foraging:client:ChooseLocation', function(data)
-    local player = cache.ped
     local hasMoney = exports.ox_inventory:Search('count', Config.MoneyItem)
 
     if hasMoney >= data.AreaCost then
@@ -67,8 +66,6 @@ RegisterNetEvent("foraging:client:DestroyTargetZone", function(zoneId)
 end)
 
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
-    local player = cache.ped
-
     if lib.progressCircle({
         lable = "Foraging for shrooommmssss",
         duration = 3000,
