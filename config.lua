@@ -27,6 +27,7 @@ Config.ForageLocations = {
             MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can be a filing cabinet if you really fucking wanted XD)
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they pickup
+            RareMushroomSpawnChance = 50, -- Chance for a rare mushroom to spawn when talking to Nudists
         },
         NudistInfo = {
             AmountOfNudists = 5, -- How many nudists spawn
@@ -52,6 +53,7 @@ Config.ForageLocations = {
             MushroomModel = "prop_stoneshroom1",
             MushroomItem = "squishybop_mushrooms",
             AmountPerPickup = 1,
+            RareMushroomSpawnChance = 50,
         },
         NudistInfo = {
             AmountOfNudists = 5,

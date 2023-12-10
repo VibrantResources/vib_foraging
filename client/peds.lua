@@ -66,22 +66,3 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
 		})
     end
 end)
-
-RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
-    if not Nudists[data.entity].AlreadySpoke then
-        lib.notify({
-            title = 'Hello',
-            description = "Hi there! Wonderful day for some foraging, eh?",
-            type = 'success',
-        })
-        Nudists[data.entity] = {
-            AlreadySpoke = true,
-        }
-    else
-        lib.notify({
-            title = 'Busy',
-            description = "We already spoke ... don't you remember?",
-            type = 'attention',
-        })
-    end
-end)

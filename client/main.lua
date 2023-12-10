@@ -36,35 +36,6 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
     end
 end)
 
--------------------
---Object Spawning--
--------------------
-
-RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, zCoord, mushroom, data)
-    local mushroomZone = exports.ox_target:addSphereZone({
-        coords = vector(coords.x, coords.y, zCoord),
-        radius = 0.5,
-        debug = Config.Debug,
-        options = {
-            {
-                distance = 2,
-                icon = "fa-solid fa-seedling",
-                label = "Harvest mushrooms",
-                event = 'foraging:client:PickUpMushroom',
-                args = {
-                    uniqueMushroom = mushroom,
-                    areaData = data,
-                },
-            },
-        },
-    })
-    TriggerServerEvent("foraging:server:UpdateMushroom", mushroom, mushroomZone)
-end)
-
-RegisterNetEvent("foraging:client:DestroyTargetZone", function(zoneId)
-    exports.ox_target:removeZone(zoneId)
-end)
-
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
     if lib.progressCircle({
         lable = "Foraging for shrooommmssss",
@@ -97,6 +68,25 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
             title = "Canceled",
             description = "Canceled",
             type = "error"
+        })
+    end
+end)
+
+RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
+    if not Nudists[data.entity].AlreadySpoke then
+        lib.notify({
+            title = 'Hello',
+            description = "Hi there! Wonderful day for some foraging, eh?",
+            type = 'success',
+        })
+        Nudists[data.entity] = {
+            AlreadySpoke = true,
+        }
+    else
+        lib.notify({
+            title = 'Busy',
+            description = "We already spoke ... don't you remember?",
+            type = 'attention',
         })
     end
 end)
