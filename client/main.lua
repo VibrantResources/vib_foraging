@@ -9,15 +9,6 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
 
     if hasMoney >= data.AreaCost then
         lib.callback("foraging:server:GetCooldown", false, function(cooldown)
-            if cooldown > 0 then
-                lib.alertDialog({
-                    header = "Slow down there, bucko ...",
-                    content = "That patch has already been harvested, friend!",
-                    centered = true,
-                })
-                return
-            end
-
             lib.alertDialog({
                 header = "Mr Drug Man says:",
                 content = "So ... you wanna know where I get my supply?"
