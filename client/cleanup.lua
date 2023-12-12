@@ -7,7 +7,6 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
 
     Wait(timer)
     for k, v in pairs(Nudists) do
-        print(json.encode(k, {indent = true}))
         Wait(250)
         SetPedAsNoLongerNeeded(k)
         exports.ox_target:removeLocalEntity(k)
