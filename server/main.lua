@@ -32,7 +32,7 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 	end
 end)
 
-RegisterServerEvent("foraging:server:UpdateMushroom", function(mushroom, mushroomZone) -- Add target zone id to unique mushroom table
+RegisterServerEvent('foraging:server:UpdateMushroom', function(mushroom, mushroomZone) -- Add target zone id to unique mushroom table
     WildMushrooms[mushroom].ZoneId = mushroomZone
 end)
 
@@ -60,7 +60,7 @@ RegisterNetEvent('foraging:server:MoneyCheck', function(data)
 	end
 end)
 
-RegisterNetEvent("foraging:server:SellMushrooms", function(data)
+RegisterNetEvent('foraging:server:SellMushrooms', function(data)
     local itemCount = exports.ox_inventory:Search(source, 'count', data.item)
     local payOut = itemCount * data.price
 
@@ -80,4 +80,8 @@ RegisterNetEvent("foraging:server:SellMushrooms", function(data)
 			type = 'inform'
 		})
 	end
+end)
+
+RegisterNetEvent('foraging:server:CleanUpTimer', function()
+
 end)

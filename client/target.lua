@@ -2,7 +2,7 @@
 --Mushroom target zones--
 -------------------------
 
-RegisterNetEvent("foraging:client:CreateTargetZone", function(coords, zCoord, mushroom, data)
+RegisterNetEvent('foraging:client:CreateTargetZone', function(coords, zCoord, mushroom, data)
     local mushroomZone = exports.ox_target:addSphereZone({
         coords = vector(coords.x, coords.y, zCoord),
         radius = 0.5,

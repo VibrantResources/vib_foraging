@@ -49,7 +49,7 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         Wait(1000)
         nudistPed = CreatePed(1, chosenModel, randomCoords.x-0.2, randomCoords.y-0.2, zCoord, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
-        lib.requestAnimSet("MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP")
+        lib.requestAnimSet('MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP')
         SetPedMovementClipset(nudistPed, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
         TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
