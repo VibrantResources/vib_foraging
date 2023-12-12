@@ -44,11 +44,7 @@ RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets pl
         else
             headerMenu[#headerMenu + 1] = {
                 title = Area.ContextMenuInfo.Title,
-                description = Area.ContextMenuInfo.Description,
-                disabled = cooldown > 0,
-                metadata = {
-                    { "This'll cost you $"..Area.AreaCost }
-                },
+                description = Area.ContextMenuInfo.Description.."\n\nThis'll cost you $"..Area.AreaCost,
                 icon = Area.ContextMenuInfo.Icon,
                 iconColor = Area.ContextMenuInfo.IconColor,
                 event = 'foraging:client:ChooseLocation',
@@ -70,7 +66,7 @@ RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets player
     local player = cache.ped
     local headerMenu = {}
 
-    for item, price in pairs(Config.MushroomShop.ItemsForSale) do
+    for item, price in pairs(Config.DealerPed.MushroomShop.ItemsForSale) do
         headerMenu[#headerMenu + 1] = {
             title = exports.ox_inventory:Items(item).label,
             description = "I can buy these "..exports.ox_inventory:Items(item).label.." for $"..price.." each",

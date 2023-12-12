@@ -4,22 +4,22 @@ Config.Debug = true
 Config.MoneyItem = "money"
 
 Config.DealerPed = {
+    ChanceForPedAggression = 50, -- % chance for peds to be aggressive upon interaction
     PedModel = "s_m_m_movspace_01", -- Ped model for shop
-    Location = vector4(1519.94, 3198.13, 40.41, 104.87), -- Location shop ped spawns
-}
-
-Config.MushroomShop = {
-    MoneyItem = "black_money",
-    ItemsForSale = {
-        schwingleborp_mushrooms = 100,
-        squishybop_mushrooms = 100,
+    Location = vector4(1355.29, 3154.24, 40.41, 104.87), -- Location shop ped spawns
+    MushroomShop = {
+        MoneyItem = "black_money",
+        ItemsForSale = {
+            schwingleborp_mushrooms = 100,
+            squishybop_mushrooms = 100,
+        }
     }
 }
 
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu
-        AreaCoords = vector3(1519.94, 3198.13, 40.41), -- Where mushroom area is
+        AreaCoords = vector3(1355.29, 3154.24, 40.41), -- Where mushroom area is
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a decimal to allow peds to wander)
         AreaCost = 1500, -- How much it charges the player to be given each location
         MushroomsInfo = {
@@ -63,7 +63,13 @@ Config.ForageLocations = {
         },
         NudistInfo = {
             AmountOfNudists = 5,
-            NudistModel = "a_m_m_acult_01",
+            NudistModels = {
+                "a_m_m_acult_01",
+                "a_m_y_hippy_01",
+                "cs_omega",
+                "a_f_y_beach_01",
+                "a_f_y_hippie_01"
+            },
         },
         Cooldown = {
             Minutes = 5,

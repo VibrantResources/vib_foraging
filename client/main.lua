@@ -76,7 +76,7 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
     if not Nudists[data.entity].AlreadySpoke then
         local randomChance = math.random(1, 100)
 
-        if randomChance < 99 then
+        if randomChance < Config.DealerPed.ChanceForPedAggression then
             TaskCombatPed(data.entity, player)
             lib.notify({
                 title = 'Fuck off',
@@ -84,11 +84,14 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
                 type = 'error',
             })
         else
+            TaskTurnPedToFaceEntity(data.entity, player, 6000)
             lib.notify({
                 title = 'Hello',
                 description = "Hi there! Wonderful day for some foraging, eh?",
                 type = 'success',
             })
+            Wait(6000)
+            TaskWanderInArea(data.entity, data.coords, 10.0, 15, 2.0)
         end
         Nudists[data.entity] = {
             AlreadySpoke = true,
