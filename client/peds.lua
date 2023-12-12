@@ -12,13 +12,13 @@ Nudists = {
 
 CreateThread(function()
     lib.requestModel(Config.DealerPed.PedModel)
-    dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location, true, true)
+    dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location.x, Config.DealerPed.Location.y, Config.DealerPed.Location.z-1, true, true)
     SetEntityInvincible(dealer, true)
     SetBlockingOfNonTemporaryEvents(dealer, true)
     FreezeEntityPosition(dealer, true)
 
     exports.ox_target:addSphereZone({
-        coords = vec3(Config.DealerPed.Location.x, Config.DealerPed.Location.y, Config.DealerPed.Location.z+1),
+        coords = vec3(Config.DealerPed.Location.x, Config.DealerPed.Location.y, Config.DealerPed.Location.z),
         radius = 1,
         debug = Config.Debug,
         options = {
@@ -47,6 +47,8 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         nudistPed = CreatePed(1, data.NudistInfo.NudistModel, randomCoords.x, randomCoords.y, zCoord, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
         SetEntityInvincible(nudistPed, true)
+        lib.requestAnimSet("MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP")
+        SetPedMovementClipset(nudistPed, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
         TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
         Nudists[nudistPed] = {

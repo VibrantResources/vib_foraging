@@ -8,16 +8,14 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
     local hasMoney = exports.ox_inventory:Search('count', Config.MoneyItem)
 
     if hasMoney >= data.AreaCost then
-        lib.callback("foraging:server:GetCooldown", false, function(cooldown)
-            lib.alertDialog({
-                header = "Mr Drug Man says:",
-                content = "So ... you wanna know where I get my supply?"
-                .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
-                centered = true,
-                cancel = false
-            })
-            TriggerServerEvent('foraging:server:MoneyCheck', data)
-        end, data)
+        lib.alertDialog({
+            header = "Mr Drug Man says:",
+            content = "So ... you wanna know where I get my supply?"
+            .. "\n\n You give me a couple racks and you'll get the best high you've ever had!",
+            centered = true,
+            cancel = false
+        })
+        TriggerServerEvent('foraging:server:MoneyCheck', data)
     else
         lib.notify({
             title = 'Attention',
