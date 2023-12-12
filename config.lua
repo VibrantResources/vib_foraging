@@ -2,6 +2,7 @@ Config = Config or {}
 
 Config.Debug = true
 Config.MoneyItem = "money"
+Config.CleanUpTimer = 5 -- Time in minutes before spawned zone mushrooms & peds get deleted (This avoids clutter if players leave and don't come back)
 
 Config.DealerPed = {
     ChanceForPedAggression = 50, -- % chance for peds to be aggressive upon interaction

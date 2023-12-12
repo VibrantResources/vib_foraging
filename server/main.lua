@@ -81,7 +81,3 @@ RegisterNetEvent('foraging:server:SellMushrooms', function(data)
 		})
 	end
 end)
-
-RegisterNetEvent('foraging:server:CleanUpTimer', function()
-
-end)
