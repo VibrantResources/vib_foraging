@@ -38,15 +38,3 @@ lib.callback.register("foraging:server:GetCooldown", function(_, data) -- Get cu
 
 	return cooldown
 end)
-
------------------
---CleanUp Timer--
------------------
-
-RegisterNetEvent("foraging:server:TriggerTimer", function(data) -- Trigger server side cooldown for selected area
-    CleanUp.Timers[data.AreaName] = os.time()
-end)
-
-RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
-	local timer = Config.CleanUpTimer * 60
-end)

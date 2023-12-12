@@ -73,35 +73,26 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
         return
     end
 
-    if not Nudists[data.entity].AlreadySpoke then
-        local randomChance = math.random(1, 100)
+    local randomChance = math.random(1, 100)
 
-        if randomChance < Config.DealerPed.ChanceForPedAggression then
-            TaskCombatPed(data.entity, player)
-            lib.notify({
-                title = 'Fuck off',
-                description = "These are my mushrooms!!!!!",
-                type = 'error',
-            })
-        else
-            TaskTurnPedToFaceEntity(data.entity, player, 6000)
-            lib.notify({
-                title = 'Hello',
-                description = "Hi there! Wonderful day for some foraging, eh?",
-                type = 'success',
-            })
-            Wait(6000)
-            TaskWanderInArea(data.entity, data.coords, 10.0, 15, 2.0)
-        end
-        Nudists[data.entity] = {
-            AlreadySpoke = true,
-        }
-    else
+    if randomChance < Config.DealerPed.ChanceForPedAggression then
+        TaskCombatPed(data.entity, player)
+        exports.ox_target:removeLocalEntity(data.entity)
+        Nudists[data.entity] = nil
         lib.notify({
-            title = 'Busy',
-            description = "We already spoke ... don't you remember?",
-            type = 'attention',
+            title = 'Fuck off',
+            description = "These are my mushrooms!!!!!",
+            type = 'error',
         })
+    else
+        TaskTurnPedToFaceEntity(data.entity, player, 6000)
+        lib.notify({
+            title = 'Hello',
+            description = "Hi there! Wonderful day for some foraging, eh?",
+            type = 'success',
+        })
+        Wait(6000)
+        TaskWanderInArea(data.entity, data.coords, 10.0, 15, 2.0)
     end
 end)
 
@@ -155,6 +146,8 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
                 TriggerEvent('foraging:client:NudistSpawn', data)
                 RemoveBlip(forageBlip)
+                Wait(3000)
+                TriggerEvent('foraging:client:CleanUpTimer', data)
                 break
             end
             Wait(10)

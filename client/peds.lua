@@ -2,9 +2,7 @@
 --Ped Variables--
 -----------------
 
-Nudists = {
-    AlreadySpoke = false,
-}
+Nudists = {}
 
 --------------------
 --Ped Spawn Thread--
@@ -46,16 +44,14 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
         local ground, zCoord = GetGroundZFor_3dCoord(randomCoords.x, randomCoords.y, randomCoords.z, 0)
 
-        Wait(1000)
+        Wait(250)
         nudistPed = CreatePed(1, chosenModel, randomCoords.x-0.2, randomCoords.y-0.2, zCoord, true, true)
         SetBlockingOfNonTemporaryEvents(nudistPed, true)
         lib.requestAnimSet('MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP')
         SetPedMovementClipset(nudistPed, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
         TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
-        Nudists[nudistPed] = {
-            AlreadySpoke = false,
-        }
+        Nudists[nudistPed] = {}
 
         local entityTarget = exports.ox_target:addLocalEntity(nudistPed, {
             {
