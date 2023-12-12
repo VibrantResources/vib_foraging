@@ -31,7 +31,13 @@ Config.ForageLocations = {
         },
         NudistInfo = {
             AmountOfNudists = 5, -- How many nudists spawn
-            NudistModel = "a_m_m_acult_01", -- Nudist ped model
+            NudistModels = {
+                "a_m_m_acult_01",
+                "a_m_y_hippy_01",
+                "cs_omega",
+                "a_f_y_beach_01",
+                "a_f_y_hippie_01"
+            },
         },
         Cooldown = {
             Minutes = 5, -- Specific area cooldown in minutes

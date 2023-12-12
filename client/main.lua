@@ -62,12 +62,34 @@ RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
 end)
 
 RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
-    if not Nudists[data.entity].AlreadySpoke then
+    local player = cache.ped
+
+    if GetEntityHealth(data.entity) <= 0 then
         lib.notify({
-            title = 'Hello',
-            description = "Hi there! Wonderful day for some foraging, eh?",
-            type = 'success',
+            title = 'Attention',
+            description = "These mushrooms really did a number on these people ...",
+            type = 'inform',
         })
+        return
+    end
+
+    if not Nudists[data.entity].AlreadySpoke then
+        local randomChance = math.random(1, 100)
+
+        if randomChance < 99 then
+            TaskCombatPed(data.entity, player)
+            lib.notify({
+                title = 'Fuck off',
+                description = "These are my mushrooms!!!!!",
+                type = 'error',
+            })
+        else
+            lib.notify({
+                title = 'Hello',
+                description = "Hi there! Wonderful day for some foraging, eh?",
+                type = 'success',
+            })
+        end
         Nudists[data.entity] = {
             AlreadySpoke = true,
         }
