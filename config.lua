@@ -2,7 +2,7 @@ Config = Config or {}
 
 Config.Debug = true
 Config.MoneyItem = "money"
-Config.CleanUpTimer = 0.1 -- Time in minutes bfore a zones spawned props/peds get deleted. (This helps avoid object clutter if players leave and don't comeback)
+Config.CleanUpTimer = 0.1 -- Time in minutes before a zones spawned props/peds get deleted. (This helps avoid object clutter if players leave and don't comeback)
 
 Config.DealerPed = {
     ChanceForPedAggression = 50, -- % chance for peds to be aggressive upon interaction

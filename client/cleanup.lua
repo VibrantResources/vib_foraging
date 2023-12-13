@@ -13,3 +13,7 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
         Nudists[k] = nil
     end
 end)
+
+RegisterNetEvent('foraging:client:CleanUpZones', function(zoneId)
+    exports.ox_target:removeZone(zoneId)
+end)
