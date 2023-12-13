@@ -6,6 +6,7 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
 	local timer = (Config.CleanUpTimer * 60000)
 
     Wait(timer)
+    RemoveBlip(forageBlip)
     for k, v in pairs(Nudists) do
         Wait(250)
         SetPedAsNoLongerNeeded(k)

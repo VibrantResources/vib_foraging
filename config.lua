@@ -2,7 +2,7 @@ Config = Config or {}
 
 Config.Debug = true
 Config.MoneyItem = "money"
-Config.CleanUpTimer = 5 -- Time in minutes before a zones spawned props/peds get deleted. (This helps avoid object clutter if players leave and don't comeback)
+Config.CleanUpTimer = 0.5 -- Time in minutes before a zones spawned props/peds get deleted. (This helps avoid object clutter if players leave and don't comeback)
 
 Config.DealerPed = {
     ChanceForPedAggression = 50, -- % chance for peds to be aggressive upon interaction
@@ -20,7 +20,7 @@ Config.DealerPed = {
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Used for context menu
-        AreaCoords = vector3(1565.35, 3212.97, 40.41), -- Where mushroom area is
+        AreaCoords = vector3(1253.22, 3125.43, 40.41), -- Where mushroom area is
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a decimal to allow peds to wander)
         AreaCost = 1500, -- How much it charges the player to be given each location
         MushroomsInfo = {

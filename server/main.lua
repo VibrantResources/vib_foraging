@@ -28,7 +28,6 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 			TriggerClientEvent("foraging:client:CreateTargetZone", -1, randomCoords, zCoord, mushroom, data)
 		end, randomCoords)
 	end
-	TriggerEvent('foraging:server:CleanUpTimer', data)
 end)
 
 RegisterServerEvent('foraging:server:UpdateMushroom', function(mushroom, mushroomZone) -- Add target zone id to unique mushroom table

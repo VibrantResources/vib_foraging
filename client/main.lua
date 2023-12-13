@@ -133,6 +133,8 @@ end)
 
 RegisterNetEvent('foraging:client:SellingBlips', function(data)
     TriggerServerEvent("foraging:server:TriggerCooldown", data)
+    TriggerServerEvent('foraging:server:CleanUpTimer', data)
+    TriggerEvent('foraging:client:CleanUpTimer', data)
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
@@ -146,8 +148,6 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
                 TriggerEvent('foraging:client:NudistSpawn', data)
                 RemoveBlip(forageBlip)
-                Wait(3000)
-                TriggerEvent('foraging:client:CleanUpTimer', data)
                 break
             end
             Wait(10)
