@@ -37,6 +37,8 @@ end)
 -----------------------
 
 RegisterNetEvent('foraging:client:NudistSpawn', function(data)
+    Nudists[data.AreaName] = {}
+
     for i = 1, data.NudistInfo.AmountOfNudists do
         local randomModel = math.random(1, #data.NudistInfo.NudistModels)
         local chosenModel = data.NudistInfo.NudistModels[randomModel]
@@ -51,7 +53,7 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
         SetPedMovementClipset(nudistPed, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
         TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
 
-        Nudists[nudistPed] = {}
+        table.insert(Nudists[data.AreaName], nudistPed)
 
         local entityTarget = exports.ox_target:addLocalEntity(nudistPed, {
             {
