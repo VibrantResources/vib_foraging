@@ -3,8 +3,14 @@
 -----------------
 
 RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
-	local timer = (Config.CleanUpTimer * 60000)
-
+    if Config.CleanUpTimer > data.Cooldown.Minutes then
+	    local timer = data.Cooldown.Minutes
+        print("Timer was greater than cooldown: ",json.encode(timer, {indent = true}))
+    else
+        local timer = Config.CleanUpTimer
+        print("Timer was less than cooldown: ",json.encode(timer, {indent = true}))
+    end
+    Wait(500)
     Wait(timer)
     RemoveBlip(forageBlip)
     for k, v in pairs(Nudists[data.AreaName]) do
