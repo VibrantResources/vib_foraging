@@ -12,6 +12,7 @@ WildMushrooms = {}
 
 RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mushroom objects after selecting area
 	local player = QBCore.Functions.GetPlayer(source)
+	WildMushrooms[data.AreaName] = {}
 
 	for i = 1, data.MushroomsInfo.MushroomAmount do
 		Wait(500)
@@ -21,10 +22,13 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 			local mushroom = CreateObject(data.MushroomsInfo.MushroomModel, randomCoords.x, randomCoords.y, zCoord, true, true, false)
 			FreezeEntityPosition(mushroom, true)
 
+			table.insert(WildMushrooms[data.AreaName], mushroom)
+
 			WildMushrooms[mushroom] = {
 				Coords = coords,
 				ZoneId = nil,
 			}
+
 			TriggerClientEvent("foraging:client:CreateTargetZone", -1, randomCoords, zCoord, mushroom, data)
 		end, randomCoords)
 	end

@@ -4,17 +4,19 @@
 
 RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
     if Config.CleanUpTimer > data.Cooldown.Minutes then
-	    local timer = data.Cooldown.Minutes
+	    timer = data.Cooldown.Minutes * 60000
     else
-        local timer = Config.CleanUpTimer
+        timer = Config.CleanUpTimer * 60000
     end
-    Wait(500)
+
+    Wait(250)
     Wait(timer)
     RemoveBlip(forageBlip)
-    for k, v in pairs(Nudists[data.AreaName]) do
+    
+    for k, nudist in pairs(Nudists[data.AreaName]) do
         Wait(250)
-        SetPedAsNoLongerNeeded(v)
-        exports.ox_target:removeLocalEntity(v)
+        SetPedAsNoLongerNeeded(nudist)
+        exports.ox_target:removeLocalEntity(nudist)
         Nudists[k] = nil
     end
 end)
