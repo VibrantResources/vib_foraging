@@ -76,6 +76,7 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
     local randomChance = math.random(1, 100)
 
     if randomChance < Config.DealerPed.ChanceForPedAggression then
+        PlayPedAmbientSpeechNative(data.entity, 'Generic_Fuck_You', 'Speech_Params_Force')
         TaskCombatPed(data.entity, player)
         exports.ox_target:removeLocalEntity(data.entity)
         Nudists[data.entity] = nil
