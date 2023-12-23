@@ -1,4 +1,5 @@
 RegisterNetEvent('foraging:client:MushroomMenu', function(data) -- Main menu after talking to Ped
+    PlayPedAmbientSpeechNative(data.entity, 'GENERIC_HI', 'Speech_Params_Force')
 	local headerMenu = {}
 
     headerMenu[#headerMenu + 1] = {

@@ -63,7 +63,7 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
                     TriggerEvent('foraging:client:SpeakToNudist', args)
                 end,
                 iconColor = "green",
-                distance = 1.5
+                distance = 2.0,
             }
 		})
     end

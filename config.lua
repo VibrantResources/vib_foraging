@@ -8,7 +8,7 @@ Config.CleanUpTimer = 0.5
 
 
 Config.DealerPed = {
-    ChanceForPedAggression = 50, -- % chance for peds to be aggressive upon interaction
+    ChanceForPedAggression = 15, -- % chance for peds to be aggressive upon interaction
     PedModel = "s_m_m_movspace_01", -- Ped model for shop
     Location = vector4(1565.35, 3212.97, 40.41, 104.87), -- Location shop ped spawns
     MushroomShop = {

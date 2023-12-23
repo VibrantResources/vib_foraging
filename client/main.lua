@@ -85,14 +85,12 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
             type = 'error',
         })
     else
-        TaskTurnPedToFaceEntity(data.entity, player, 6000)
-        lib.notify({
-            title = 'Hello',
-            description = "Hi there! Wonderful day for some foraging, eh?",
-            type = 'success',
-        })
-        Wait(6000)
+        TaskTurnPedToFaceEntity(data.entity, player, -1)
+        Wait(1000)
+        PlayPedAmbientSpeechNative(data.entity, 'GENERIC_HI', 'Speech_Params_Force')
+        Wait(5000)
         TaskWanderInArea(data.entity, data.coords, 10.0, 15, 2.0)
+        PlayPedAmbientSpeechNative(data.entity, 'GENERIC_BYE', 'Speech_Params_Force')
     end
 end)
 
