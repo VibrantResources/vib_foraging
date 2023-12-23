@@ -3,24 +3,24 @@ RegisterNetEvent('foraging:client:MushroomMenu', function(data) -- Main menu aft
 	local headerMenu = {}
 
     headerMenu[#headerMenu + 1] = {
-        title = "Willys wonderous waves",
-        description = "These groovy green guys are the gateway to another plane maaaan ...",
+        title = locale("MainMenu_ShopTitle"),
+        description = locale("MainMenu_ShopDescription"),
         event = 'foraging:client:ShopMenu',
-        icon = "fa-solid fa-plant",
-        iconColor = "green",
+        icon = "fa-solid fa-basket-shopping",
+        iconColor = "yellow",
     }
 
     headerMenu[#headerMenu + 1] = {
-        title = "Locations",
-        description = "So, you wanna know where I'm picking all these groovy shrooms, eh ...",
-        icon = "fa-solid fa-flower",
-        iconColor = "green",
+        title = locale("MainMenu_LocationsTitle"),
+        description = locale("MainMenu_LocationsDescription"),
         event = 'foraging:client:LocationMenu',
+        icon = "fa-solid fa-seedling",
+        iconColor = "green",
     }
 
     lib.registerContext({
         id = 'mushroom_menu',
-        title = "Lucid lounging",
+        title = locale("MainMenu_MenuTitle"),
         options = headerMenu
     })
 
@@ -37,7 +37,7 @@ RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets pl
         if cooldown > 0 then
             headerMenu[#headerMenu + 1] = {
                 title = Area.ContextMenuInfo.Title,
-                description = "This patch has been harvested! Don't over do it!",
+                description = locale("MushroomPatchAlreadyHarvested"),
                 readOnly = true,
                 icon = Area.ContextMenuInfo.Icon,
                 iconColor = Area.ContextMenuInfo.IconColor,
@@ -56,7 +56,11 @@ RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets pl
 
     lib.registerContext({
         id = 'location_menu',
-        title = "Funky findings",
+        title = locale("LocationMenu_MenuTitle"),
+        menu = 'mushroom_menu',
+        onBack = function()
+            lib.showContext('mushroom_menu')
+        end,
         options = headerMenu
     })
 
@@ -83,7 +87,7 @@ RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets player
 
     lib.registerContext({
         id = 'shop_menu',
-        title = "Willys wonderous waves",
+        title = locale("MainMenu_ShopTitle"),
         menu = 'mushroom_menu',
         onBack = function()
             lib.showContext('mushroom_menu')

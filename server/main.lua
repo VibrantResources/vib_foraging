@@ -1,4 +1,5 @@
 QBCore = exports["qb-core"]:GetCoreObject()
+lib.locale()
 
 -------------
 --Variables--
@@ -49,8 +50,8 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 		TriggerClientEvent('foraging:client:DestroyTargetZone', -1, zoneId)
 	else
 		lib.notify(source, {
-			title = 'Full inventory',
-			description = 'Your inventory is full',
+			title = locale("PlayerInventoryFull_Title"),
+			description = locale("PlayerInventoryFull_Description"),
 			type = 'error'
 		})
 	end
@@ -66,19 +67,19 @@ RegisterNetEvent('foraging:server:SellMushrooms', function(data)
     local itemCount = exports.ox_inventory:Search(source, 'count', data.item)
     local payOut = itemCount * data.price
 
-	if exports.ox_inventory:CanCarryItem(source, Config.MushroomShop.MoneyItem, payOut) then
+	if exports.ox_inventory:CanCarryItem(source, Config.DealerPed.MushroomShop.MoneyItem, payOut) then
 		if exports.ox_inventory:RemoveItem(source, data.item, itemCount) then
-			exports.ox_inventory:AddItem(source, Config.MushroomShop.MoneyItem, payOut)
+			exports.ox_inventory:AddItem(source, Config.DealerPed.MushroomShop.MoneyItem, payOut)
 			lib.notify(source, {
-				title = "Attention",
-				description = "You've made $"..payOut,
+				title = locale("PlayerSoldMushrooms_Title"),
+				description = locale("PlayerSoldMushrooms_Description")..payOut,
 				type = 'success'
 			})
 		end
 	else
 		lib.notify(source, {
-			title = "Attention",
-			description = "Inventory is full!",
+			title = locale("PlayerInventoryFull_Title"),
+			description = locale("PlayerInventoryFull_Description"),
 			type = 'inform'
 		})
 	end

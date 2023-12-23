@@ -21,11 +21,11 @@ CreateThread(function()
         debug = Config.Debug,
         options = {
             {
-                icon = "fa-solid fa-comment-dots",
-                iconColor = "green",
-                label = "Speak to Groovy dude",
+                label = locale("InteractWithStartPed"),
                 event = 'foraging:client:MushroomMenu',
                 distance = 2,
+                icon = "fa-solid fa-comment-dots",
+                iconColor = "green",
                 args = Config.DealerPed.ShopInfo,
             },
         },
@@ -57,13 +57,13 @@ RegisterNetEvent('foraging:client:NudistSpawn', function(data)
 
         local entityTarget = exports.ox_target:addLocalEntity(nudistPed, {
             {
-                icon = 'fas fa-shopping-basket',
-                label = "Speak to Nudist",
+                label = locale("InteractWithSpawnedPed"),
                 onSelect = function(args)
                     TriggerEvent('foraging:client:SpeakToNudist', args)
                 end,
-                iconColor = "green",
                 distance = 2.0,
+                icon = 'fas fa-shopping-basket',
+                iconColor = "green",
             }
 		})
     end

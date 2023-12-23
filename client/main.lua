@@ -1,4 +1,5 @@
 QBCore = exports["qb-core"]:GetCoreObject()
+lib.locale()
 
 ----------------
 --Events Stuff--
@@ -18,8 +19,8 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
         TriggerServerEvent('foraging:server:MoneyCheck', data)
     else
         lib.notify({
-            title = 'Attention',
-            description = "You don't have enough money!",
+            title = locale("PlayerNotEnoughMoney_Title"),
+            description = locale("PlayerNotEnoughMoney_Description"),
             type = 'error'
         })
     end
@@ -27,7 +28,7 @@ end)
 
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
     if lib.progressCircle({
-        lable = "Foraging for shrooommmssss",
+        lable = locale("GatheringProgressBar_Label"),
         duration = 3000,
         useWhileDead = false,
         canCancel = true,
@@ -66,8 +67,8 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
 
     if GetEntityHealth(data.entity) <= 0 then
         lib.notify({
-            title = 'Attention',
-            description = "These mushrooms really did a number on these people ...",
+            title = locale("NudistAlreadyDeadNotif_Title"),
+            description = locale("NudistAlreadyDeadNotif_Description"),
             type = 'inform',
         })
         return
@@ -80,11 +81,6 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
         TaskCombatPed(data.entity, player)
         exports.ox_target:removeLocalEntity(data.entity)
         Nudists[data.entity] = nil
-        lib.notify({
-            title = 'Fuck off',
-            description = "These are my mushrooms!!!!!",
-            type = 'error',
-        })
     else
         TaskTurnPedToFaceEntity(data.entity, player, -1)
         Wait(1000)

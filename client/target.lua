@@ -11,7 +11,7 @@ RegisterNetEvent('foraging:client:CreateTargetZone', function(coords, zCoord, mu
             {
                 distance = 2,
                 icon = "fa-solid fa-seedling",
-                label = "Harvest mushrooms",
+                label = locale("InteractWithSpawnedMushroom"),
                 event = 'foraging:client:PickUpMushroom',
                 args = {
                     uniqueMushroom = mushroom,

@@ -1,0 +1,27 @@
+{
+    "InteractWithStartPed": "Let's talk",
+    "InteractWithSpawnedPed": "Speak to nudist",
+    "InteractWithSpawnedMushroom": "Collect Mushroom",
+
+    "NudistAlreadyDeadNotif_Title": "Attention",
+    "NudistAlreadyDeadNotif_Description": "These mushrooms really did a number on these guys ... ",
+
+    "PlayerNotEnoughMoney_Title": "Attention",
+    "PlayerNotEnoughMoney_Description": "You don't have enough cash",
+
+    "GatheringProgressBar_Label": "Gathering shrooooms O_o",
+
+    "PlayerInventoryFull_Title": "Unable",
+    "PlayerInventoryFull_Description": "You're inventory is full",
+
+    "PlayerSoldMushrooms_Title": "Good job",
+    "PlayerSoldMushrooms_Description": "You sold you mushrooms and made $",
+
+    "MainMenu_ShopTitle": "Willys wonderous waves",
+    "MainMenu_ShopDescription": "So ... you want me to buy what you found, eh?",
+    "MainMenu_LocationsTitle": "Foraging",
+    "MainMenu_LocationsDescription": "Sure ... I'll show you where I get em'... for a price",
+    "MushroomPatchAlreadyHarvested": "This patch has already been harvested ... don't over do it!",
+    "MainMenu_MenuTitle": "Lucid Lounging",
+    "LocationMenu_MenuTitle": "Funky Fidnings"
+}
