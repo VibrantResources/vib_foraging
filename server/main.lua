@@ -35,10 +35,6 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 	end
 end)
 
-RegisterServerEvent('foraging:server:UpdateMushroom', function(mushroom, mushroomZone) -- Add target zone id to unique mushroom table
-    WildMushrooms[mushroom].ZoneId = mushroomZone
-end)
-
 RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mushroom, destroying zone & object too
 	local zoneId = WildMushrooms[data.args.uniqueMushroom].ZoneId
 	local mushroomStuff = data.args.areaData.MushroomsInfo
@@ -57,13 +53,13 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 	end
 end)
 
-RegisterNetEvent('foraging:server:MoneyCheck', function(data)
+RegisterNetEvent('foraging:server:MoneyCheck', function(data) -- Check if money is removed before giving information to player
 	if exports.ox_inventory:RemoveItem(source, Config.MoneyItem, data.AreaCost) then
 		TriggerClientEvent('foraging:client:SellingBlips', source, data)
 	end
 end)
 
-RegisterNetEvent('foraging:server:SellMushrooms', function(data)
+RegisterNetEvent('foraging:server:SellMushrooms', function(data) -- Sell mushrooms for money
     local itemCount = exports.ox_inventory:Search(source, 'count', data.item)
     local payOut = itemCount * data.price
 

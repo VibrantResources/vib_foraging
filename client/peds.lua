@@ -32,39 +32,13 @@ CreateThread(function()
     })
 end)
 
------------------------
---Nudist Spawn Events--
------------------------
+------------------------
+--Nudist control stuff--
+------------------------
 
-RegisterNetEvent('foraging:client:NudistSpawn', function(data)
-    Nudists[data.AreaName] = {}
+RegisterNetEvent('foraging:client:CleanUpNudists', function(data, nudistEntity)
+    Wait(500)
+    local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 
-    for i = 1, data.NudistInfo.AmountOfNudists do
-        local randomModel = math.random(1, #data.NudistInfo.NudistModels)
-        local chosenModel = data.NudistInfo.NudistModels[randomModel]
-        lib.requestModel(chosenModel)
-        local randomCoords = getRandomPointInArea(data.AreaCoords, data.AreaRadius)
-        local ground, zCoord = GetGroundZFor_3dCoord(randomCoords.x, randomCoords.y, randomCoords.z, 0)
-
-        Wait(250)
-        nudistPed = CreatePed(1, chosenModel, randomCoords.x-0.2, randomCoords.y-0.2, zCoord, true, true)
-        SetBlockingOfNonTemporaryEvents(nudistPed, true)
-        lib.requestAnimSet('MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP')
-        SetPedMovementClipset(nudistPed, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
-        TaskWanderInArea(nudistPed, randomCoords.x, randomCoords.y, zCoord, data.AreaRadius, 15, 2.0)
-
-        table.insert(Nudists[data.AreaName], nudistPed)
-
-        local entityTarget = exports.ox_target:addLocalEntity(nudistPed, {
-            {
-                label = locale("InteractWithSpawnedPed"),
-                onSelect = function(args)
-                    TriggerEvent('foraging:client:SpeakToNudist', args)
-                end,
-                distance = 2.0,
-                icon = 'fas fa-shopping-basket',
-                iconColor = "green",
-            }
-		})
-    end
+    exports.ox_target:removeLocalEntity(newNudistEntity)
 end)

@@ -6,10 +6,6 @@ Context = {
     Cooldowns = {},
 }
 
-Cleanup = {
-	Timers = {}
-}
-
 ---------------------
 --Cooldown Handling--
 ---------------------

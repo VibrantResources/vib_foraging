@@ -79,8 +79,6 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
     if randomChance < Config.DealerPed.ChanceForPedAggression then
         PlayPedAmbientSpeechNative(data.entity, 'Generic_Fuck_You', 'Speech_Params_Force')
         TaskCombatPed(data.entity, player)
-        exports.ox_target:removeLocalEntity(data.entity)
-        Nudists[data.entity] = nil
     else
         TaskTurnPedToFaceEntity(data.entity, player, -1)
         Wait(1000)
@@ -141,7 +139,7 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
     
             if distance < 75 then
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
-                TriggerEvent('foraging:client:NudistSpawn', data)
+                TriggerServerEvent('foraging:server:NudistSpawn', data)
                 RemoveBlip(forageBlip)
                 break
             end

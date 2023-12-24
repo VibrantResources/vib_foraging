@@ -13,12 +13,6 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
     Wait(timer)
     RemoveBlip(forageBlip)
     
-    for k, nudist in pairs(Nudists[data.AreaName]) do
-        Wait(250)
-        SetPedAsNoLongerNeeded(nudist)
-        exports.ox_target:removeLocalEntity(nudist)
-        Nudists[k] = nil
-    end
 end)
 
 RegisterNetEvent('foraging:client:CleanUpZones', function(zoneId)
