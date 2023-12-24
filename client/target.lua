@@ -24,7 +24,7 @@ RegisterNetEvent('foraging:client:CreateTargetZone', function(coords, zCoord, mu
     TriggerServerEvent("foraging:server:UpdateMushroom", mushroom, mushroomZone)
 end)
 
-RegisterNetEvent('camping:client:CreateTargetEntity', function(data, nudistEntity)
+RegisterNetEvent('foraging:client:CreateTargetEntity', function(data, nudistEntity)
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 

@@ -27,6 +27,7 @@ RegisterNetEvent('foraging:server:NudistSpawn', function(data) -- Create peds af
         Wait(500)
         local nudistEntity = NetworkGetNetworkIdFromEntity(nudistPed)
 
-        TriggerClientEvent('camping:client:CreateTargetEntity', -1, data, nudistEntity)
+        TriggerClientEvent('foraging:client:CreateTargetEntity', -1, data, nudistEntity)
+        TriggerClient()
     end
 end)
