@@ -127,7 +127,7 @@ end)
 RegisterNetEvent('foraging:client:SellingBlips', function(data)
     TriggerServerEvent("foraging:server:TriggerCooldown", data)
     TriggerServerEvent('foraging:server:CleanUpTimer', data)
-    TriggerEvent('foraging:client:CleanUpTimer', data)
+    
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)

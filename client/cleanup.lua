@@ -12,7 +12,6 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
     Wait(250)
     Wait(timer)
     RemoveBlip(forageBlip)
-    
 end)
 
 RegisterNetEvent('foraging:client:CleanUpZones', function(zoneId)
