@@ -14,13 +14,19 @@ RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
 
     for k, mushroom in pairs(WildMushrooms[data.AreaName]) do
         Wait(500)
-        DeleteEntity(mushroom)
-        TriggerClientEvent('foraging:client:CleanUpZones', -1, WildMushrooms[mushroom].ZoneId) 
+        if DoesEntityExist(mushroom) then
+            DeleteEntity(mushroom)
+            TriggerClientEvent('foraging:client:CleanUpZones', -1, WildMushrooms[mushroom].ZoneId)
+        end
     end
+
+    WildMushrooms[data.AreaName] = {}
 
     for k, nudist in pairs(Nudists[data.AreaName]) do
         Wait(500)
         local nudistEntity = NetworkGetNetworkIdFromEntity(nudist)
         TriggerClientEvent('foraging:client:CleanUpNudists', -1, data, nudistEntity)
     end
+
+    Nudists[data.AreaName] = {}
 end)

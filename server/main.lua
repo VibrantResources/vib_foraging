@@ -41,7 +41,6 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 
 	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup) then
 		exports.ox_inventory:AddItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup)
-		WildMushrooms[data.args.uniqueMushroom] = nil
 		DeleteEntity(data.args.uniqueMushroom)
 		TriggerClientEvent('foraging:client:DestroyTargetZone', -1, zoneId)
 	else
