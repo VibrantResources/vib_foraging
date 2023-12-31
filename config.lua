@@ -39,7 +39,7 @@ Config.ForageLocations = {
             },
         },
         Cooldown = {
-            Minutes = 5, -- Specific area cooldown in minutes(Keep it as a whole number)
+            Minutes = 0.5, -- Specific area cooldown in minutes(Keep it as a whole number)
         },
         ContextMenuInfo = { -- Context menu text for this zone
             Title = "Big Shroom Tings",

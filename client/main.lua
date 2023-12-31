@@ -83,7 +83,7 @@ RegisterNetEvent('foraging:client:SpeakToNudist', function(data)
         TaskTurnPedToFaceEntity(data.entity, player, -1)
         Wait(1000)
         PlayPedAmbientSpeechNative(data.entity, 'GENERIC_HI', 'Speech_Params_Force')
-        Wait(5000)
+        Wait(3000)
         TaskWanderInArea(data.entity, data.coords, 10.0, 15, 2.0)
         PlayPedAmbientSpeechNative(data.entity, 'GENERIC_BYE', 'Speech_Params_Force')
     end
