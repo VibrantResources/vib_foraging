@@ -16,7 +16,6 @@ RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
         Wait(500)
         if DoesEntityExist(mushroom) then
             DeleteEntity(mushroom)
-            TriggerClientEvent('foraging:client:CleanUpZones', -1, WildMushrooms[mushroom].ZoneId)
         end
     end
 

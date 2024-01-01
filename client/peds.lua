@@ -23,10 +23,10 @@ CreateThread(function()
             {
                 label = locale("InteractWithStartPed"),
                 event = 'foraging:client:MushroomMenu',
-                distance = 2,
+                args = Config.DealerPed.ShopInfo,
                 icon = "fa-solid fa-comment-dots",
                 iconColor = "green",
-                args = Config.DealerPed.ShopInfo,
+                distance = 2.0,
             },
         },
     })
@@ -36,7 +36,7 @@ end)
 --Nudist control stuff--
 ------------------------
 
-RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity)
+RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity) -- Make peds wander drunk after spawning
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
     lib.requestAnimSet('MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP')
@@ -45,7 +45,7 @@ RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity)
     SetPedMovementClipset(newNudistEntity, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
 end)
 
-RegisterNetEvent('foraging:client:CleanUpNudists', function(data, nudistEntity)
+RegisterNetEvent('foraging:client:CleanUpNudists', function(data, nudistEntity) -- Remove peds
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 

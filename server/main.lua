@@ -30,19 +30,20 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 				ZoneId = nil,
 			}
 
-			TriggerClientEvent("foraging:client:CreateTargetZone", -1, randomCoords, zCoord, mushroom, data)
+			Wait(500)
+			local newMushroom = NetworkGetNetworkIdFromEntity(mushroom)
+	
+			TriggerClientEvent('foraging:client:CreateMushroomEntity', -1, data, newMushroom, mushroom)
 		end, randomCoords)
 	end
 end)
 
 RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mushroom, destroying zone & object too
-	local zoneId = WildMushrooms[data.args.uniqueMushroom].ZoneId
 	local mushroomStuff = data.args.areaData.MushroomsInfo
 
 	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup) then
 		exports.ox_inventory:AddItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup)
 		DeleteEntity(data.args.uniqueMushroom)
-		TriggerClientEvent('foraging:client:DestroyTargetZone', -1, zoneId)
 	else
 		lib.notify(source, {
 			title = locale("PlayerInventoryFull_Title"),

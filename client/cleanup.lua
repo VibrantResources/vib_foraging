@@ -13,7 +13,3 @@ RegisterNetEvent('foraging:client:CleanUpTimer', function(data)
     Wait(timer)
     RemoveBlip(forageBlip)
 end)
-
-RegisterNetEvent('foraging:client:CleanUpZones', function(zoneId)
-    exports.ox_target:removeZone(zoneId)
-end)

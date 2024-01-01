@@ -2,50 +2,40 @@
 --Mushroom target zones--
 -------------------------
 
-RegisterNetEvent('foraging:client:CreateTargetZone', function(coords, zCoord, mushroom, data)
-    local mushroomZone = exports.ox_target:addSphereZone({
-        coords = vector(coords.x, coords.y, zCoord),
-        radius = 0.5,
-        debug = Config.Debug,
-        options = {
-            {
-                label = locale("InteractWithSpawnedMushroom"),
-                event = 'foraging:client:PickUpMushroom',
-                args = {
-                    uniqueMushroom = mushroom,
-                    areaData = data,
-                },
-                icon = "fa-solid fa-seedling",
-                iconColor = "green",
-                distance = 2,
-            },
-        },
-    })
-    TriggerServerEvent("foraging:server:UpdateMushroom", mushroom, mushroomZone)
-end)
-
-RegisterNetEvent('foraging:client:CreateTargetEntity', function(data, nudistEntity)
+RegisterNetEvent('foraging:client:CreateMushroomEntity', function(data, newMushroom, mushroom)
     Wait(500)
-    local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
+    local newMushroomEntity = NetworkGetEntityFromNetworkId(newMushroom)
 
-    local entityTarget = exports.ox_target:addLocalEntity(newNudistEntity, {
+    local entityTarget = exports.ox_target:addLocalEntity(newMushroomEntity, {
         {
-            icon = "fa-solid fa-comment-dots",
-            iconColor = "green",
-            label = locale("InteractWithSpawnedPed"),
+            label = locale("InteractWithSpawnedMushroom"),
             onSelect = function(data)
-                TriggerEvent('foraging:client:SpeakToNudist', data)
+                TriggerEvent('foraging:client:PickUpMushroom', data)
             end,
+            args = {
+                uniqueMushroom = mushroom,
+                areaData = data,
+            },
+            icon = "fa-solid fa-seedling",
             iconColor = "green",
             distance = 2.0
         }
     })
 end)
 
-RegisterNetEvent("foraging:client:DestroyTargetZone", function(zoneId)
-    exports.ox_target:removeZone(zoneId)
-end)
+RegisterNetEvent('foraging:client:CreateNudistEntity', function(data, nudistEntity)
+    Wait(500)
+    local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 
-RegisterNetEvent('foraging:client:RemoveLocalEntityTarget', function(data)
-
+    local entityTarget = exports.ox_target:addLocalEntity(newNudistEntity, {
+        {
+            label = locale("InteractWithSpawnedPed"),
+            onSelect = function(data)
+                TriggerEvent('foraging:client:SpeakToNudist', data)
+            end,
+            icon = "fa-solid fa-comment-dots",
+            iconColor = "green",
+            distance = 2.0
+        }
+    })
 end)

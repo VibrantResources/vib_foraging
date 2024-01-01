@@ -139,7 +139,7 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
     
             if distance < 75 then
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
-                TriggerServerEvent('foraging:server:NudistSpawn', data)
+                -- TriggerServerEvent('foraging:server:NudistSpawn', data)
                 RemoveBlip(forageBlip)
                 break
             end
