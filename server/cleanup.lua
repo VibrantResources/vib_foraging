@@ -3,8 +3,8 @@
 -----------------
 
 RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
-    if Config.CleanUpTimer > data.Cooldown.Minutes then
-	    timer = data.Cooldown.Minutes * 60000
+    if Config.CleanUpTimer > data.CooldownInMinutes then
+	    timer = data.CooldownInMinutes * 60000
     else
         timer = Config.CleanUpTimer * 60000
     end
@@ -24,7 +24,8 @@ RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
     for k, nudist in pairs(Nudists[data.AreaName]) do
         Wait(500)
         local nudistEntity = NetworkGetNetworkIdFromEntity(nudist)
-        TriggerClientEvent('foraging:client:CleanUpNudists', -1, data, nudistEntity)
+
+        TriggerClientEvent('foraging:client:CleanUpNudists', -1, nudistEntity)
     end
 
     Nudists[data.AreaName] = {}

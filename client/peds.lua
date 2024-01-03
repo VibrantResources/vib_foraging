@@ -45,10 +45,10 @@ RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity) 
     SetPedMovementClipset(newNudistEntity, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
 end)
 
-RegisterNetEvent('foraging:client:CleanUpNudists', function(data, nudistEntity) -- Remove peds
+RegisterNetEvent('foraging:client:CleanUpNudists', function(nudistEntity) -- Remove peds
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 
+    TaskWanderStandard(newNudistEntity, 10.0, 10)
     exports.ox_target:removeLocalEntity(newNudistEntity)
-    SetPedAsNoLongerNeeded(newNudistEntity)
 end)

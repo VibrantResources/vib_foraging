@@ -1,6 +1,12 @@
 QBCore = exports["qb-core"]:GetCoreObject()
 lib.locale()
 
+-------------
+--Variables--
+-------------
+
+ForagingStarted = false
+
 ----------------
 --Events Stuff--
 ----------------
@@ -125,27 +131,36 @@ end)
 -----------------
 
 RegisterNetEvent('foraging:client:SellingBlips', function(data)
+    ForagingStarted = true
+    print(ForagingStarted)
     TriggerServerEvent("foraging:server:TriggerCooldown", data)
-    TriggerServerEvent('foraging:server:CleanUpTimer', data)
-    
+    TriggerServerEvent('foraging:server:CheckShit', data)
+
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
     SetBlipColour(forageBlip, 2)
 
     CreateThread(function()
-        while true do
+        while ForagingStarted == true do
             local playerCoords = GetEntityCoords(PlayerPedId())
             local distance = #(playerCoords - data.AreaCoords)
     
             if distance < 75 then
                 TriggerServerEvent('foraging:server:CreateMushrooms', data)
-                -- TriggerServerEvent('foraging:server:NudistSpawn', data)
+                TriggerServerEvent('foraging:server:NudistSpawn', data)
+                TriggerServerEvent('foraging:server:CleanUpTimer', data)
                 RemoveBlip(forageBlip)
                 break
             end
             Wait(10)
         end
     end)
+end)
+
+RegisterNetEvent('foraging:client:EndForaging', function()
+    RemoveBlip(forageBlip)
+    ForagingStarted = false
+    print(ForagingStarted)
 end)
 
 -------------

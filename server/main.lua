@@ -14,6 +14,7 @@ WildMushrooms = {}
 RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mushroom objects after selecting area
 	local player = QBCore.Functions.GetPlayer(source)
 	WildMushrooms[data.AreaName] = {}
+	Context.Cooldowns[data.AreaName].ZoneTriggered = true
 
 	for i = 1, data.MushroomsInfo.MushroomAmount do
 		Wait(500)
@@ -36,6 +37,28 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 			TriggerClientEvent('foraging:client:CreateMushroomEntity', -1, data, newMushroom, mushroom)
 		end, randomCoords)
 	end
+end)
+
+RegisterNetEvent('foraging:server:CheckShit', function(data) -- Handles 
+	local src = source
+	local player = QBCore.Functions.GetPlayer(source)
+
+	CreateThread(function()
+		local cooldownInMs = data.CooldownInMinutes * 60000
+
+		while true do
+			local ctx = Context.Cooldowns[data.AreaName]
+		 
+			local timeSinceStartedInMs = (os.time() - ctx.Cooldown) * 1000
+		
+			if ctx.ZoneTriggered or timeSinceStartedInMs >= cooldownInMs then
+				TriggerClientEvent('foraging:client:EndForaging', src)
+				return
+			end
+
+			Wait(1000)
+		end
+	end)
 end)
 
 RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mushroom, destroying zone & object too
