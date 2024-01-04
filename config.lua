@@ -4,7 +4,11 @@ Config.Debug = true
 Config.MoneyItem = "money" -- Money item taken when paying for a foraging area
 -- [Config.CleanUpTimer] is designed to allow automatic removal of spawned props and peds. If this timer is HIGHER than an Area's [CooldownInMinutes], the timer will
 -- BECOME that Area's [CooldownInMinutess] time, if it's LESS then it'll stay as whatever is defined here
-Config.CleanUpTimer = 0.2
+Config.CleanUpTimer = 1
+
+Config.GenericStuff = {
+    PickUpDuration = 1500, -- How long it takes to pick up a mushroom
+}
 
 
 Config.DealerPed = {
@@ -23,7 +27,7 @@ Config.DealerPed = {
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Must be unique for cooldown purposes
-        AreaCoords = vector3(1446.34, 3180.09, 40.41), -- Where you want the mushroom to spawn
+        AreaCoords = vector3(1534.2, 3204.16, 40.41), -- Where you want the mushroom to spawn
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a float to allow peds to wander)
         AreaCost = 1500, -- How much this location will charge the player
         MushroomsInfo = {
@@ -38,7 +42,7 @@ Config.ForageLocations = {
                 "a_m_m_acult_01",
             },
         },
-        CooldownInMinutes = 1,
+        CooldownInMinutes = 10,
         ContextMenuInfo = { -- Context menu text for this zone
             Title = "Big Shroom Tings",
             Description = "If you're after the biggest bang for your buck, then you've chose the right area!",

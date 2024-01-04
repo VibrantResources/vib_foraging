@@ -8,7 +8,7 @@ Nudists = {}
 --Events--
 ----------
 
-RegisterNetEvent('foraging:server:NudistSpawn', function(data) -- Create peds after selecting area
+RegisterNetEvent('foraging:server:NudistSpawn', function(data)
     local player = QBCore.Functions.GetPlayer(source)
     Nudists[data.AreaName] = {}
 

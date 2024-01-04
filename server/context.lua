@@ -11,14 +11,14 @@ Context = {
 --Cooldown Handling--
 ---------------------
 
-RegisterNetEvent("foraging:server:TriggerCooldown", function(data) -- Trigger server side cooldown for selected area
+RegisterNetEvent("foraging:server:TriggerCooldown", function(data)
     Context.Cooldowns[data.AreaName] = {
 		Cooldown = os.time(),
 		ZoneTriggered = false,
 	}
 end)
 
-lib.callback.register("foraging:server:GetCooldown", function(_, data) -- Get current area cooldown
+lib.callback.register("foraging:server:GetCooldown", function(_, data)
 	if Context.Cooldowns[data.AreaName] == nil then
 		return 0
 	end

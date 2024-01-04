@@ -36,7 +36,7 @@ end)
 --Nudist control stuff--
 ------------------------
 
-RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity) -- Make peds wander drunk after spawning
+RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity)
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
     lib.requestAnimSet('MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP')
@@ -45,7 +45,7 @@ RegisterNetEvent('foraging:client:AmbientNudists', function(data, nudistEntity) 
     SetPedMovementClipset(newNudistEntity, 'MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP', 1)
 end)
 
-RegisterNetEvent('foraging:client:CleanUpNudists', function(nudistEntity) -- Remove peds
+RegisterNetEvent('foraging:client:CleanUpNudists', function(nudistEntity)
     Wait(500)
     local newNudistEntity = NetworkGetEntityFromNetworkId(nudistEntity)
 

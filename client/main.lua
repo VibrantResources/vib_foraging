@@ -22,7 +22,7 @@ RegisterNetEvent('foraging:client:ChooseLocation', function(data)
             centered = true,
             cancel = false
         })
-        TriggerServerEvent('foraging:server:MoneyCheck', data)
+        TriggerServerEvent('foraging:server:MoneyRemoval', data)
     else
         lib.notify({
             title = locale("PlayerNotEnoughMoney_Title"),
@@ -35,7 +35,7 @@ end)
 RegisterNetEvent('foraging:client:PickUpMushroom', function(data)
     if lib.progressCircle({
         lable = locale("GatheringProgressBar_Label"),
-        duration = 3000,
+        duration = Config.GenericStuff.PickUpDuration,
         useWhileDead = false,
         canCancel = true,
         disable = {
@@ -134,7 +134,7 @@ RegisterNetEvent('foraging:client:SellingBlips', function(data)
     ForagingStarted = true
     print(ForagingStarted)
     TriggerServerEvent("foraging:server:TriggerCooldown", data)
-    TriggerServerEvent('foraging:server:CheckShit', data)
+    TriggerServerEvent('foraging:server:EndForaging', data)
 
     forageBlip = AddBlipForRadius(data.AreaCoords, 30.0)
     SetBlipAlpha(forageBlip, 175)
@@ -160,7 +160,6 @@ end)
 RegisterNetEvent('foraging:client:EndForaging', function()
     RemoveBlip(forageBlip)
     ForagingStarted = false
-    print(ForagingStarted)
 end)
 
 -------------

@@ -1,4 +1,4 @@
-RegisterNetEvent('foraging:client:MushroomMenu', function(data) -- Main menu after talking to Ped
+RegisterNetEvent('foraging:client:MushroomMenu', function(data)
     PlayPedAmbientSpeechNative(data.entity, 'GENERIC_HOWS_IT_GOING', 'Speech_Params_Force')
 	local headerMenu = {}
 
@@ -27,7 +27,7 @@ RegisterNetEvent('foraging:client:MushroomMenu', function(data) -- Main menu aft
     lib.showContext('mushroom_menu')
 end)
 
-RegisterNetEvent('foraging:client:LocationMenu', function() -- Menu that lets players choose locations
+RegisterNetEvent('foraging:client:LocationMenu', function()
     local player = cache.ped
     local headerMenu = {}
 

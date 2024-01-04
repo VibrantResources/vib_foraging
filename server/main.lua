@@ -11,7 +11,7 @@ WildMushrooms = {}
 --Events--
 ----------
 
-RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mushroom objects after selecting area
+RegisterNetEvent('foraging:server:CreateMushrooms', function(data)
 	local player = QBCore.Functions.GetPlayer(source)
 	WildMushrooms[data.AreaName] = {}
 	Context.Cooldowns[data.AreaName].ZoneTriggered = true
@@ -39,7 +39,7 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data) -- Create mus
 	end
 end)
 
-RegisterNetEvent('foraging:server:CheckShit', function(data) -- Handles 
+RegisterNetEvent('foraging:server:EndForaging', function(data)
 	local src = source
 	local player = QBCore.Functions.GetPlayer(source)
 
@@ -61,7 +61,7 @@ RegisterNetEvent('foraging:server:CheckShit', function(data) -- Handles
 	end)
 end)
 
-RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mushroom, destroying zone & object too
+RegisterNetEvent('foraging:server:PickupMushroom', function(data)
 	local mushroomStuff = data.args.areaData.MushroomsInfo
 
 	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup) then
@@ -76,13 +76,13 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data) -- Pick up mus
 	end
 end)
 
-RegisterNetEvent('foraging:server:MoneyCheck', function(data) -- Check if money is removed before giving information to player
+RegisterNetEvent('foraging:server:MoneyRemoval', function(data)
 	if exports.ox_inventory:RemoveItem(source, Config.MoneyItem, data.AreaCost) then
 		TriggerClientEvent('foraging:client:SellingBlips', source, data)
 	end
 end)
 
-RegisterNetEvent('foraging:server:SellMushrooms', function(data) -- Sell mushrooms for money
+RegisterNetEvent('foraging:server:SellMushrooms', function(data)
     local itemCount = exports.ox_inventory:Search(source, 'count', data.item)
     local payOut = itemCount * data.price
 
