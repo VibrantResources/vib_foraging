@@ -4,7 +4,7 @@ Config.Debug = true
 Config.MoneyItem = "money" -- Money item taken when paying for a foraging area
 -- [Config.CleanUpTimer] is designed to allow automatic removal of spawned props and peds. If this timer is HIGHER than an Area's [CooldownInMinutes], the timer will
 -- BECOME that Area's [CooldownInMinutess] time, if it's LESS then it'll stay as whatever is defined here
-Config.CleanUpTimer = 1
+Config.CleanUpTimer = 0.2
 
 Config.GenericStuff = {
     PickUpDuration = 1500, -- How long it takes to pick up a mushroom

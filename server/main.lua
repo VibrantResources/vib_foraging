@@ -66,7 +66,9 @@ RegisterNetEvent('foraging:server:PickupMushroom', function(data)
 
 	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup) then
 		exports.ox_inventory:AddItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup)
-		DeleteEntity(data.args.uniqueMushroom)
+		if DoesEntityExist(data.args.uniqueMushroom) then
+			DeleteEntity(data.args.uniqueMushroom)
+		end
 	else
 		lib.notify(source, {
 			title = locale("PlayerInventoryFull_Title"),
