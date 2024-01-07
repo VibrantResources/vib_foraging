@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.Debug = true
+Config.Debug = false
 Config.MoneyItem = "money" -- Money item taken when paying for a foraging area
 -- [Config.CleanUpTimer] is designed to allow automatic removal of spawned props and peds. If this timer is HIGHER than an Area's [CooldownInMinutes], the timer will
 -- BECOME that Area's [CooldownInMinutess] time, if it's LESS then it'll stay as whatever is defined here
@@ -32,7 +32,7 @@ Config.ForageLocations = {
         AreaCost = 1500, -- How much this location will charge the player
         MushroomsInfo = {
             MushroomAmount = 5, -- How many mushrooms spawn
-            MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can realisticly be whatever you want)
+            MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can realistically be whatever you want)
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they collect
         },
@@ -46,7 +46,7 @@ Config.ForageLocations = {
         ContextMenuInfo = { -- Context menu text for this zone
             Title = "Big Shroom Tings",
             Description = "If you're after the biggest bang for your buck, then you've chose the right area!",
-            Icon = "fa-solid fa-fire", -- Up to you to find one that works if you change this [https://fontawesome.com/]
+            Icon = "fa-solid fa-fire", -- Can be changed here, using the FREE ones [https://fontawesome.com/]
             IconColor = "red", -- What colour you want the above icon to be
         },
     },
