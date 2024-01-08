@@ -23,3 +23,8 @@ shared_scripts {
 files {
     'locales/*.json'
 }
+
+escrow_ignore {
+    'config.lua',
+    'locales/*.json',
+}
