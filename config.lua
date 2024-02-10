@@ -27,11 +27,11 @@ Config.DealerPed = {
 Config.ForageLocations = {
     {
         AreaName = 'Big Shroom Tings', -- Must be unique for cooldown purposes
-        AreaCoords = vector3(1534.2, 3204.16, 40.41), -- Where you want the mushroom to spawn
+        AreaCoords = vector3(3629.92, 5003.25, 12.47), -- Where you want the mushroom to spawn
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a float to allow peds to wander)
         AreaCost = 1500, -- How much this location will charge the player
         MushroomsInfo = {
-            MushroomAmount = 5, -- How many mushrooms spawn
+            MushroomAmount = 8, -- How many mushrooms spawn
             MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can realistically be whatever you want)
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they collect
@@ -52,11 +52,11 @@ Config.ForageLocations = {
     },
     {
         AreaName = 'Small Shroom Tings',
-        AreaCoords = vector3(1595.28, 3220.28, 40.41),
+        AreaCoords = vector3(-312.67, 3791.57, 68.0),
         AreaRadius = 15.0,
         AreaCost = 1000,
         MushroomsInfo = {
-            MushroomAmount = 5,
+            MushroomAmount = 8,
             MushroomModel = "prop_stoneshroom1",
             MushroomItem = "squishybop_mushrooms",
             AmountPerPickup = 1,
