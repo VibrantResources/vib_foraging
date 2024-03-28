@@ -4,7 +4,7 @@ Config.Debug = false
 Config.MoneyItem = "money" -- Money item taken when paying for a foraging area
 -- [Config.CleanUpTimer] is designed to allow automatic removal of spawned props and peds. If this timer is HIGHER than an Area's [CooldownInMinutes], the timer will
 -- BECOME that Area's [CooldownInMinutess] time, if it's LESS then it'll stay as whatever is defined here
-Config.CleanUpTimer = 0.2
+Config.CleanUpTimer = 5
 
 Config.GenericStuff = {
     PickUpDuration = 1500, -- How long it takes to pick up a mushroom
@@ -29,9 +29,9 @@ Config.ForageLocations = {
         AreaName = 'Big Shroom Tings', -- Must be unique for cooldown purposes
         AreaCoords = vector3(3629.92, 5003.25, 12.47), -- Where you want the mushroom to spawn
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a float to allow peds to wander)
-        AreaCost = 1500, -- How much this location will charge the player
+        AreaCost = 550, -- How much this location will charge the player
         MushroomsInfo = {
-            MushroomAmount = 8, -- How many mushrooms spawn
+            MushroomAmount = math.random(7, 13), -- How many mushrooms spawn
             MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can realistically be whatever you want)
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
             AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they collect
@@ -42,7 +42,7 @@ Config.ForageLocations = {
                 "a_m_m_acult_01",
             },
         },
-        CooldownInMinutes = 10,
+        CooldownInMinutes = 25,
         ContextMenuInfo = { -- Context menu text for this zone
             Title = "Big Shroom Tings",
             Description = "If you're after the biggest bang for your buck, then you've chose the right area!",
@@ -54,9 +54,9 @@ Config.ForageLocations = {
         AreaName = 'Small Shroom Tings',
         AreaCoords = vector3(-312.67, 3791.57, 68.0),
         AreaRadius = 15.0,
-        AreaCost = 1000,
+        AreaCost = 700,
         MushroomsInfo = {
-            MushroomAmount = 8,
+            MushroomAmount = math.random(7, 13),
             MushroomModel = "prop_stoneshroom1",
             MushroomItem = "squishybop_mushrooms",
             AmountPerPickup = 1,
@@ -67,7 +67,7 @@ Config.ForageLocations = {
                 "a_m_m_acult_01",
             },
         },
-        CooldownInMinutes = 1,
+        CooldownInMinutes = 25,
         ContextMenuInfo = {
             Title = "Small Shroom Tings",
             Description = "A milder effect but people seem to love the constant vibe ...",
