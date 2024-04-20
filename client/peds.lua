@@ -10,7 +10,7 @@ Nudists = {}
 
 CreateThread(function()
     lib.requestModel(Config.DealerPed.PedModel)
-    local dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location.x, Config.DealerPed.Location.y, Config.DealerPed.Location.z-1, true, true)
+    local dealer = CreatePed(1, Config.DealerPed.PedModel, Config.DealerPed.Location.x, Config.DealerPed.Location.y, Config.DealerPed.Location.z-1, false, false)
     SetEntityInvincible(dealer, true)
     SetBlockingOfNonTemporaryEvents(dealer, true)
     FreezeEntityPosition(dealer, true)
