@@ -4,7 +4,7 @@ Config.Debug = false
 Config.MoneyItem = "money" -- Money item taken when paying for a foraging area
 -- [Config.CleanUpTimer] is designed to allow automatic removal of spawned props and peds. If this timer is HIGHER than an Area's [CooldownInMinutes], the timer will
 -- BECOME that Area's [CooldownInMinutess] time, if it's LESS then it'll stay as whatever is defined here
-Config.CleanUpTimer = 5
+Config.CleanUpTimer = 10
 
 Config.GenericStuff = {
     PickUpDuration = 1500, -- How long it takes to pick up a mushroom
@@ -31,10 +31,13 @@ Config.ForageLocations = {
         AreaRadius = 15.0, -- Radius mushrooms will spawn randomly around [AreaCoords] above (Keep this as a float to allow peds to wander)
         AreaCost = 550, -- How much this location will charge the player
         MushroomsInfo = {
-            MushroomAmount = math.random(30, 60), -- How many mushrooms spawn
+            MushroomAmount = math.random(7, 14), -- How many mushrooms spawn
             MushroomModel = "prop_stoneshroom1", -- Model that spawns (Can realistically be whatever you want)
             MushroomItem = "schwingleborp_mushrooms", -- Name of item given to player upon picking up mushrooms
-            AmountPerPickup = 1, -- How many [MushroomItem] is given to the player each time they collect
+            AmountPerPickup = { -- How many [MushroomItem] is given to the player each time they collect
+                min = 3,
+                max = 8,
+            },
         },
         NudistInfo = {
             AmountOfNudists = 5, -- How many NPC's spawn
@@ -56,10 +59,13 @@ Config.ForageLocations = {
         AreaRadius = 15.0,
         AreaCost = 700,
         MushroomsInfo = {
-            MushroomAmount = math.random(30, 60),
+            MushroomAmount = math.random(7, 14),
             MushroomModel = "prop_stoneshroom1",
             MushroomItem = "squishybop_mushrooms",
-            AmountPerPickup = 1,
+            AmountPerPickup = {
+                min = 3,
+                max = 8,
+            },
         },
         NudistInfo = {
             AmountOfNudists = 5,

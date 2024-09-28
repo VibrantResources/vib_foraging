@@ -63,9 +63,10 @@ end)
 
 RegisterNetEvent('foraging:server:PickupMushroom', function(data)
 	local mushroomStuff = data.args.areaData.MushroomsInfo
+	local randomAmount = math.random(mushroomStuff.AmountPerPickup.min, mushroomStuff.AmountPerPickup.max)
 
-	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup) then
-		exports.ox_inventory:AddItem(source, mushroomStuff.MushroomItem, mushroomStuff.AmountPerPickup)
+	if exports.ox_inventory:CanCarryItem(source, mushroomStuff.MushroomItem, randomAmount) then
+		exports.ox_inventory:AddItem(source, mushroomStuff.MushroomItem, randomAmount)
 		if DoesEntityExist(data.args.uniqueMushroom) then
 			DeleteEntity(data.args.uniqueMushroom)
 		end
