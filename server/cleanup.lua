@@ -3,13 +3,14 @@
 -----------------
 
 RegisterNetEvent('foraging:server:CleanUpTimer', function(data)
+    local timer = 0
+
     if Config.CleanUpTimer > data.CooldownInMinutes then
 	    timer = data.CooldownInMinutes * 60000
     else
         timer = Config.CleanUpTimer * 60000
     end
 
-    Wait(250)
     Wait(timer)
 
     for k, mushroom in pairs(WildMushrooms[data.AreaName]) do

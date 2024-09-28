@@ -14,14 +14,7 @@ Config.GenericStuff = {
 Config.DealerPed = {
     ChanceForPedAggression = 15, -- % chance for peds to be aggressive upon interaction
     PedModel = "s_m_m_movspace_01", -- Shop ped model
-    Location = vector4(-1123.97, 4892.84, 218.47, 9.02), -- Location of shop ped
-    MushroomShop = {
-        MoneyItem = "black_money", -- Money item given after selling items
-        ItemsForSale = { -- [Item] / [item sale price]
-            schwingleborp_mushrooms = 100,
-            squishybop_mushrooms = 100,
-        }
-    }
+    Location = vector4(-1123.97, 4892.84, 218.47, 9.02), -- Location of starting ped
 }
 
 Config.ForageLocations = {

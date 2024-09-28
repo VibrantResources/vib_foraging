@@ -40,7 +40,6 @@ RegisterNetEvent('foraging:server:CreateMushrooms', function(data)
 end)
 
 RegisterNetEvent('foraging:server:EndForaging', function(data)
-	local src = source
 	local player = QBCore.Functions.GetPlayer(source)
 
 	CreateThread(function()
@@ -52,7 +51,7 @@ RegisterNetEvent('foraging:server:EndForaging', function(data)
 			local timeSinceStartedInMs = (os.time() - ctx.Cooldown) * 1000
 		
 			if ctx.ZoneTriggered or timeSinceStartedInMs >= cooldownInMs then
-				TriggerClientEvent('foraging:client:EndForaging', src)
+				TriggerClientEvent('foraging:client:EndForaging', source)
 				return
 			end
 
@@ -82,27 +81,5 @@ end)
 RegisterNetEvent('foraging:server:MoneyRemoval', function(data)
 	if exports.ox_inventory:RemoveItem(source, Config.MoneyItem, data.AreaCost) then
 		TriggerClientEvent('foraging:client:SellingBlips', source, data)
-	end
-end)
-
-RegisterNetEvent('foraging:server:SellMushrooms', function(data)
-    local itemCount = exports.ox_inventory:Search(source, 'count', data.item)
-    local payOut = itemCount * data.price
-
-	if exports.ox_inventory:CanCarryItem(source, Config.DealerPed.MushroomShop.MoneyItem, payOut) then
-		if exports.ox_inventory:RemoveItem(source, data.item, itemCount) then
-			exports.ox_inventory:AddItem(source, Config.DealerPed.MushroomShop.MoneyItem, payOut)
-			lib.notify(source, {
-				title = locale("PlayerSoldMushrooms_Title"),
-				description = locale("PlayerSoldMushrooms_Description")..payOut,
-				type = 'success'
-			})
-		end
-	else
-		lib.notify(source, {
-			title = locale("PlayerInventoryFull_Title"),
-			description = locale("PlayerInventoryFull_Description"),
-			type = 'inform'
-		})
 	end
 end)

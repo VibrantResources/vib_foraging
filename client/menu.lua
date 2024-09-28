@@ -3,14 +3,6 @@ RegisterNetEvent('foraging:client:MushroomMenu', function(data)
 	local headerMenu = {}
 
     headerMenu[#headerMenu + 1] = {
-        title = locale("MainMenu_ShopTitle"),
-        description = locale("MainMenu_ShopDescription"),
-        event = 'foraging:client:ShopMenu',
-        icon = "fa-solid fa-basket-shopping",
-        iconColor = "yellow",
-    }
-
-    headerMenu[#headerMenu + 1] = {
         title = locale("MainMenu_LocationsTitle"),
         description = locale("MainMenu_LocationsDescription"),
         event = 'foraging:client:LocationMenu',
@@ -65,35 +57,4 @@ RegisterNetEvent('foraging:client:LocationMenu', function()
     })
 
     lib.showContext('location_menu')
-end)
-
-RegisterNetEvent('foraging:client:ShopMenu', function() -- Menu that lets players sell items
-    local player = cache.ped
-    local headerMenu = {}
-
-    for item, price in pairs(Config.DealerPed.MushroomShop.ItemsForSale) do
-        headerMenu[#headerMenu + 1] = {
-            title = exports.ox_inventory:Items(item).label,
-            description = "I can buy these "..exports.ox_inventory:Items(item).label.." for $"..price.." each",
-            icon = "fa-solid fa-sack-dollar",
-            iconColor = "green",
-            serverEvent = 'foraging:server:SellMushrooms',
-            args = {
-                item = item,
-                price = price,
-            },
-        }
-    end
-
-    lib.registerContext({
-        id = 'shop_menu',
-        title = locale("MainMenu_ShopTitle"),
-        menu = 'mushroom_menu',
-        onBack = function()
-            lib.showContext('mushroom_menu')
-        end,
-        options = headerMenu
-    })
-
-    lib.showContext('shop_menu')
 end)
